@@ -2,6 +2,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
+<<<<<<< HEAD
       <loc>https://joyce-peng.github.io/about/</loc>
       
       <lastmod>2020-01-11T19:52:10+08:00</lastmod>
@@ -46,12 +47,17 @@
       
       <lastmod>2018-08-29T00:00:00+00:00</lastmod>
       
+=======
+      <loc>https://joyce-peng.github.io/categories/</loc>
+      
+>>>>>>> 2570c4483bd70e7eb66ea25edf803928fae51dae
       
       
       
     </url>
   
     <url>
+<<<<<<< HEAD
       <loc>https://joyce-peng.github.io/2018/0.48-relnotes/</loc>
       
       <lastmod>2018-08-29T00:00:00+00:00</lastmod>
@@ -175,6 +181,9 @@
       <loc>https://joyce-peng.github.io/posts/</loc>
       
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+=======
+      <loc>https://joyce-peng.github.io/</loc>
+>>>>>>> 2570c4483bd70e7eb66ea25edf803928fae51dae
       
       
       
@@ -184,6 +193,7 @@
     <url>
       <loc>https://joyce-peng.github.io/tags/</loc>
       
+<<<<<<< HEAD
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
       
       
@@ -286,6 +296,8 @@
       
       <lastmod>2014-03-10T00:00:00+00:00</lastmod>
       
+=======
+>>>>>>> 2570c4483bd70e7eb66ea25edf803928fae51dae
       
       
       

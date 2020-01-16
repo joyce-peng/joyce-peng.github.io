@@ -6,11 +6,15 @@
     <description>Recent content in Tags on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+<<<<<<< HEAD
     <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
+=======
+>>>>>>> 2570c4483bd70e7eb66ea25edf803928fae51dae
     
 	<atom:link href="https://joyce-peng.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+<<<<<<< HEAD
     <item>
       <title>hugo</title>
       <link>https://joyce-peng.github.io/tags/hugo/</link>
@@ -74,5 +78,7 @@
       <description></description>
     </item>
     
+=======
+>>>>>>> 2570c4483bd70e7eb66ea25edf803928fae51dae
   </channel>
 </rss>
