@@ -63,3 +63,6 @@
 
 .icon-medium-circle-fill:before { content: "\e887"; }
 
+.icon-sun:before {
+  content: "\e684";
+}
