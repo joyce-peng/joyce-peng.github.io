@@ -27,8 +27,6 @@
   </title>
   <meta name="title" content="The Summer of Hugo | Joyce`s Blog">
     
-  
-  <link rel="stylesheet" href="/font/iconfont.css">
   <link rel="stylesheet" href="/css/main.min.css">
 
 
@@ -70,12 +68,22 @@
   <body class="">
     <div class="wrapper">
         <nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
     <div class="container">
         <div class="navbar-header header-logo">
-        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://joyce-peng.github.io/">Joyce`s Blog</a>
+            
+            <span class="logo_mark" >></span>
+            <a href="https://joyce-peng.github.io/">
+                <span class="logo_text" >$ cd /home/ </span>
+                <span class="logo_cursor" ></span>
+            </a>
+            
         </div>
-        <div class="menu navbar-right">
+        <div class="navbar-right">
                 
+                <span class="menu">
                 
                 <a class="menu-item" href="/posts/" title="">Blog</a>
                 
@@ -85,16 +93,31 @@
                 
                 <a class="menu-item" href="/about/" title="">About</a>
                 
-				<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+                </span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
         </div>
     </div>
 </nav>
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     
+         <div class="top-scroll-bar"></div>
+     
      <div class="container">
         <div class="navbar-header">
-            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://joyce-peng.github.io/">Joyce`s Blog</a></div>
-            <div class="menu-toggle">
-                <span></span><span></span><span></span>
+            <div class="header-logo">
+                
+                    <span class="logo_mark">></span>
+                    <a href="https://joyce-peng.github.io/">
+                        <span class="logo_text">$ cd /home/ </span>
+                        <span class="logo_cursor"></span>
+                </a>
+                
+            </div>
+            <div class="navbar-right">
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
         </div>
      
@@ -129,7 +152,7 @@
                         <a href="https://joyce-peng.github.io/categories/releases/"> Releases </a>
                         
                 </span>
-				<span class="post-word-count">, 377 words</span>
+                <span class="post-word-count">, 377 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -234,7 +257,7 @@ which has received <strong>5 contributions by 3 contributors</strong>.</p>
           
                  
           
-		
+        
 <div id="gitalk-container"></div>
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -278,6 +301,7 @@ which has received <strong>5 contributions by 3 contributors</strong>.</p>
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
 </footer>
+
 
 
 
