@@ -1,21 +1,103 @@
-@font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1581514152133'); /* IE9 */
-  src: url('iconfont.eot?t=1581514152133#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALIAAsAAAAABpQAAAJ6AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBIIEqATYCJAMICwYABCAFhG0HLxvPBREVjD+yHwc52ZP5JdKYwh5hyREl+jke/n+uvC/5mc0kBVZIUT2VC6wKjMevLajWrquscRVmZQFRTwFmbk3HcG9UhOpa51vP8h350e40rPM4jVIIiZBgwDHTJdBA8oDmEtUUWRSA4wENMKpoZP9Cb/zD2E0EDuE8gcp8jRgeXb9dKQHTAnH+zKkjypxbkqxYKbRq1iZxS6HMbmQTuMl/P75aGyWZIgcKNp8cOa7/ww+YkOuwnxJ4CNrmAjkaJGJ7bXijXFi0XLU9WYwkCT78Ox3dJPaqF9a/DmRPAnNVwT0JsehWx2Ygoe3OOwdGuWknIJ2Eis9t7d6yvVKfwofv2Li5Z/eWvq276qiO3ru3/f79HQ8f7nrwYH/+0Z0923p37RjvXHX1cP/hRWMDBwZ+LZh6Y6Jx49l4c6NcELc3x/nz2RbIpbbNsSXlEZ5quDK3X0bnhH7gz/Kj2QuB4DX3jx2a2v2/rBN40s6/w3WJ5qI8kTP4YcKebSkUA2OWfGFtPNNo30hNpUKHbpxhD3GYfXe2UOaEFjJd5iFXWkpM1AaF2jq0lPpQWYNYbK7NRPYitbHaS0GY5o3MFHeRm+ZDTNQvCnP80DIt9qjsjJl71paHEUOEJWMD1RNMPY0SmVmI3AOqa19SVszpF6TV+MC1nGKswBFpjgXrTXnMEiRNA+TKZdj3E8w0tVizpZnnzLZl3Zeseho2whCCSgw1QOUJGLXJSNLeTJR+/gApV70StbQMOC8QWZnBgcvi9CAWirFXy718srpRPIxJQCKTAciVUajXm4C5flQL1ZhFjwjOMjbsJvsqrPVVw9ftgwrQZgGH5IojxgudzQYAAA==') format('woff2'),
-  url('iconfont.woff?t=1581514152133') format('woff'),
-  url('iconfont.ttf?t=1581514152133') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont.svg?t=1581514152133#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?genfve');
+  src:  url('fonts/icomoon.eot?genfve#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?genfve') format('truetype'),
+    url('fonts/icomoon.woff?genfve') format('woff'),
+    url('fonts/icomoon.svg?genfve#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
   font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-ai250:before {
   content: "\e6ee";
+}
+.icon-flickr:before {
+  content: "\e654";
+}
+.icon-tag:before {
+  content: "\e6fd";
+}
+.icon-linkedin:before {
+  content: "\e698";
+}
+.icon-mail:before {
+  content: "\e759";
+}
+.icon-search:before {
+  content: "\e627";
+}
+.icon-mail01:before {
+  content: "\e642";
+}
+.icon-wechat:before {
+  content: "\e68b";
+}
+.icon-facebook:before {
+  content: "\e601";
+}
+.icon-twitter:before {
+  content: "\eb2a";
+}
+.icon-love:before {
+  content: "\e745";
+}
+.icon-github:before {
+  content: "\e712";
+}
+.icon-pinterest:before {
+  content: "\e7bf";
+}
+.icon-up:before {
+  content: "\e750";
+}
+.icon-left:before {
+  content: "\e60a";
+}
+.icon-folder:before {
+  content: "\e638";
+}
+.icon-close:before {
+  content: "\e6d5";
+}
+.icon-dribbble:before {
+  content: "\e696";
+}
+.icon-instagram:before {
+  content: "\e6b6";
+}
+.icon-tumblr:before {
+  content: "\e61f";
+}
+.icon-telegram:before {
+  content: "\e731";
+}
+.icon-xihuan:before {
+  content: "\e86f";
+}
+.icon-xihuan1:before {
+  content: "\e870";
+}
+.icon-right:before {
+  content: "\e6dd";
+}
+.icon-medium-circle-fill:before {
+  content: "\e887";
 }
 
