@@ -57,7 +57,7 @@
     "datePublished": "2020-02-15 00:00:00 \x2b0000 UTC",
     "dateModified" : "2020-02-15 00:00:00 \x2b0000 UTC",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post01\/",
-    "wordCount" : "7459",
+    "wordCount" : "7243",
     "keywords" : [ "博客优化","Hugo", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/uncategorized/"> Uncategorized </a>
                         
                 </span>
-				<span class="post-word-count">, 7459 words</span>
+				<span class="post-word-count">, 7243 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -163,18 +163,12 @@
 <!-- raw HTML omitted -->
 <p>下载的文件解压后有不少东西，但是需要用到的只有下面几个。</p>
 <!-- raw HTML omitted -->
-<h3 id="skins">Skins</h3>
-<p>Skins are the files responsible for the look and feel of your site. It’s the CSS that controls colors and fonts, it’s the Javascript that determines actions and reactions. It’s also the rules that Hugo uses to transform your content into the HTML that the site will serve to visitors.</p>
-<p>You have two ways to create a skin. The simplest way is to create it in the <code>layouts/</code> directory. If you do, then you don’t have to worry about configuring Hugo to recognize it. The first place that Hugo will look for rules and files is in the <code>layouts/</code> directory so it will always find the skin.</p>
-<p>Your second choice is to create it in a sub-directory of the <code>themes/</code> directory. If you do, then you must always tell Hugo where to search for the skin. It’s extra work, though, so why bother with it?</p>
-<p>The difference between creating a skin in <code>layouts/</code> and creating it in <code>themes/</code> is very subtle. A skin in <code>layouts/</code> can’t be customized without updating the templates and static files that it is built from. A skin created in <code>themes/</code>, on the other hand, can be and that makes it easier for other people to use it.</p>
-<p>The rest of this tutorial will call a skin created in the <code>themes/</code> directory a theme.</p>
-<p>Note that you can use this tutorial to create a skin in the <code>layouts/</code> directory if you wish to. The main difference will be that you won’t need to update the site’s configuration file to use a theme.</p>
-<h3 id="the-home-page">The Home Page</h3>
-<p>The home page, or landing page, is the first page that many visitors to a site see. It is the index.html file in the root directory of the web site. Since Hugo writes files to the public/ directory, our home page is public/index.html.</p>
-<h3 id="site-configuration-file">Site Configuration File</h3>
-<p>When Hugo runs, it looks for a configuration file that contains settings that override default values for the entire site. The file can use TOML, YAML, or JSON. I prefer to use TOML for my configuration files. If you prefer to use JSON or YAML, you’ll need to translate my examples. You’ll also need to change the name of the file since Hugo uses the extension to determine how to process it.</p>
-<p>Hugo translates Markdown files into HTML. By default, Hugo expects to find Markdown files in your <code>content/</code> directory and template files in your <code>themes/</code> directory. It will create HTML files in your <code>public/</code> directory. You can change this by specifying alternate locations in the configuration file.</p>
+<h3 id="第一步先修改下面几个文件的名称">第一步，先修改下面几个文件的名称</h3>
+<!-- raw HTML omitted -->
+<h3 id="第二步打开hugo项目的主题目录找到font文件夹myblogthemesleaveitassetsfontfont中也有一个iconfontcss打开它把刚刚下载文件中的iconfontcss的font-face粘贴到font中的iconfontcss注意更改名称否则会有冲突然后把下载文件的iconfontcss中新增图标的信息也复制到font中的iconfontcss">第二步，打开hugo项目的主题目录，找到font文件夹（..\myBlog\themes\LeaveIt\assets\font），font中也有一个iconfont.css，打开它，把刚刚下载文件中的iconfont.css的@font-face粘贴到font中的iconfont.css，注意更改名称，否则会有冲突。然后把下载文件的iconfont.css中新增图标的信息也复制到font中的iconfont.css。</h3>
+<!-- raw HTML omitted -->
+<h3 id="第三步把这四个文件复制到font文件夹">第三步，把这四个文件复制到font文件夹</h3>
+<!-- raw HTML omitted -->
 <h3 id="content">Content</h3>
 <p>Content is stored in text files that contain two sections. The first section is the “front matter,” which is the meta-information on the content. The second section contains Markdown that will be converted to HTML.</p>
 <h4 id="front-matter">Front Matter</h4>
@@ -362,7 +356,7 @@ $
 <li>Hugo created a js/ directory.</li>
 <li>Hugo claimed that it created 0 pages. It created a file and copied over static files, but didn't create any pages. That's because it considers a &ldquo;page&rdquo; to be a file created directly from a content file. It doesn't count things like the index.html files that it creates automatically.</li>
 </ol>
-<h4 id="the-home-page-1">The Home Page</h4>
+<h4 id="the-home-page">The Home Page</h4>
 <p>Hugo supports many different types of templates. The home page is special because it gets its own type of template and its own template file. The file, layouts/index.html, is used to generate the HTML for the home page. The Hugo documentation says that this is the only required template, but that depends. Hugo's warning message shows that it looks for three different templates:</p>
 <pre><code>WARN: 2014/09/29 Unable to locate layout: [index.html _default/list.html _default/single.html]
 </code></pre><p>If it can't find any of these, it completely skips creating the home page. We noticed that when we built the site without having a theme installed.</p>
