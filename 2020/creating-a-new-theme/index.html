@@ -57,7 +57,7 @@
     "datePublished": "2020-02-15 00:00:00 \x2b0000 UTC",
     "dateModified" : "2020-02-15 00:00:00 \x2b0000 UTC",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/creating-a-new-theme\/",
-    "wordCount" : "7273",
+    "wordCount" : "7377",
     "keywords" : [ "博客优化","Hugo", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/uncategorized/"> Uncategorized </a>
                         
                 </span>
-				<span class="post-word-count">, 7273 words</span>
+				<span class="post-word-count">, 7377 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -152,8 +152,13 @@
 
           <p>本站目前所用的主题是LeaveIt，主题的作者喜欢简单的风格，所以在布局上采用了大量的留白。Hugo主题看了不少，感觉还是这种简洁、干净、优雅的主题比较打动我。</p>
 <p><img src="http://wwxlpy.cn/joyceBlog/post01_1.jpg" alt="post01_1"></p>
-<h2 id="some-definitions">Some Definitions</h2>
-<p>There are a few concepts that you need to understand before creating a theme.</p>
+<h2 id="删除图标">删除图标</h2>
+<p>下载好的主题有些地方与自己实际想要的效果还是有点差距的，比如首页那一长排的图标，很多用不上。如果你想删除其中的一些，可以直接在config.toml中，把params.social下不用的图标注释掉，这样首页就不会再显示这些图标了。</p>
+<p><img src="http://wwxlpy.cn/joyceBlog/post01_2.jpg" alt="post01_2"></p>
+<p><img src="http://wwxlpy.cn/joyceBlog/post01_3.jpg" alt="post01_3"></p>
+<!-- raw HTML omitted -->
+<p><img src="http://wwxlpy.cn/joyceBlog/post01_4.jpg" alt="post01_4"></p>
+<!-- raw HTML omitted -->
 <h3 id="skins">Skins</h3>
 <p>Skins are the files responsible for the look and feel of your site. It’s the CSS that controls colors and fonts, it’s the Javascript that determines actions and reactions. It’s also the rules that Hugo uses to transform your content into the HTML that the site will serve to visitors.</p>
 <p>You have two ways to create a skin. The simplest way is to create it in the <code>layouts/</code> directory. If you do, then you don’t have to worry about configuring Hugo to recognize it. The first place that Hugo will look for rules and files is in the <code>layouts/</code> directory so it will always find the skin.</p>
