@@ -57,7 +57,7 @@
     "datePublished": "2020-02-15 00:00:00 \x2b0000 UTC",
     "dateModified" : "2020-02-15 00:00:00 \x2b0000 UTC",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post01\/",
-    "wordCount" : "7244",
+    "wordCount" : "6664",
     "keywords" : [ "博客优化","Hugo", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/uncategorized/"> Uncategorized </a>
                         
                 </span>
-				<span class="post-word-count">, 7244 words</span>
+				<span class="post-word-count">, 6664 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -164,31 +164,13 @@
 <!-- raw HTML omitted -->
 <p>下载的文件解压后有不少东西，但是需要用到的只有下面几个。</p>
 <!-- raw HTML omitted -->
-<h3 id="第一步先修改下面几个文件的名称">第一步，先修改下面几个文件的名称</h3>
+<h4 id="第一步先修改下面几个文件的名称">第一步，先修改下面几个文件的名称</h4>
 <!-- raw HTML omitted -->
-<h3 id="第二步打开hugo项目的主题目录找到font文件夹myblogthemesleaveitassetsfontfont中也有一个iconfontcss打开它把刚刚下载文件中的iconfontcss的font-face粘贴到font中的iconfontcss注意更改名称否则会有冲突然后把下载文件的iconfontcss中新增图标的信息也复制到font中的iconfontcss">第二步，打开hugo项目的主题目录，找到font文件夹（..\myBlog\themes\LeaveIt\assets\font），font中也有一个iconfont.css，打开它，把刚刚下载文件中的iconfont.css的@font-face粘贴到font中的iconfont.css，注意更改名称，否则会有冲突。然后把下载文件的iconfont.css中新增图标的信息也复制到font中的iconfont.css。</h3>
+<h4 id="第二步打开hugo项目的主题目录找到font文件夹myblogthemesleaveitassetsfontfont中也有一个iconfontcss打开它把刚刚下载文件中的iconfontcss的font-face粘贴到font中的iconfontcss注意更改名称否则会有冲突然后把下载文件的iconfontcss中新增图标的信息也复制到font中的iconfontcss">第二步，打开hugo项目的主题目录，找到font文件夹（..\myBlog\themes\LeaveIt\assets\font），font中也有一个iconfont.css，打开它，把刚刚下载文件中的iconfont.css的@font-face粘贴到font中的iconfont.css，注意更改名称，否则会有冲突。然后把下载文件的iconfont.css中新增图标的信息也复制到font中的iconfont.css。</h4>
 <!-- raw HTML omitted -->
-<h3 id="第三步把这四个文件复制到font文件夹">第三步，把这四个文件复制到font文件夹</h3>
+<h4 id="第三步把这四个文件复制到font文件夹">第三步，把这四个文件复制到font文件夹</h4>
 <!-- raw HTML omitted -->
 <h3 id="content">Content</h3>
-<p>Content is stored in text files that contain two sections. The first section is the “front matter,” which is the meta-information on the content. The second section contains Markdown that will be converted to HTML.</p>
-<h4 id="front-matter">Front Matter</h4>
-<p>The front matter is information about the content. Like the configuration file, it can be written in TOML, YAML, or JSON. Unlike the configuration file, Hugo doesn’t use the file’s extension to know the format. It looks for markers to signal the type. TOML is surrounded by “<code>+++</code>”, YAML by “<code>---</code>”, and JSON is enclosed in curly braces. I prefer to use TOML, so you’ll need to translate my examples if you prefer YAML or JSON.</p>
-<p>The information in the front matter is passed into the template before the content is rendered into HTML.</p>
-<h4 id="markdown">Markdown</h4>
-<p>Content is written in Markdown which makes it easier to create the content. Hugo runs the content through a Markdown engine to create the HTML which will be written to the output file.</p>
-<h3 id="template-files">Template Files</h3>
-<p>Hugo uses template files to render content into HTML. Template files are a bridge between the content and presentation. Rules in the template define what content is published, where it's published to, and how it will rendered to the HTML file. The template guides the presentation by specifying the style to use.</p>
-<p>There are three types of templates: single, list, and partial. Each type takes a bit of content as input and transforms it based on the commands in the template.</p>
-<p>Hugo uses its knowledge of the content to find the template file used to render the content. If it can’t find a template that is an exact match for the content, it will shift up a level and search from there. It will continue to do so until it finds a matching template or runs out of templates to try. If it can’t find a template, it will use the default template for the site.</p>
-<p>Please note that you can use the front matter to influence Hugo’s choice of templates.</p>
-<h4 id="single-template">Single Template</h4>
-<p>A single template is used to render a single piece of content. For example, an article or post would be a single piece of content and use a single template.</p>
-<h4 id="list-template">List Template</h4>
-<p>A list template renders a group of related content. That could be a summary of recent postings or all articles in a category. List templates can contain multiple groups.</p>
-<p>The homepage template is a special type of list template. Hugo assumes that the home page of your site will act as the portal for the rest of the content in the site.</p>
-<h4 id="partial-template">Partial Template</h4>
-<p>A partial template is a template that can be included in other templates. Partial templates must be called using the “partial” template command. They are very handy for rolling up common behavior. For example, your site may have a banner that all pages use. Instead of copying the text of the banner into every single and list template, you could create a partial with the banner in it. That way if you decide to change the banner, you only have to change the partial template.</p>
 <h2 id="create-a-new-site">Create a New Site</h2>
 <p>Let's use Hugo to create a new web site. I'm a Mac user, so I'll create mine in my home directory, in the Sites folder. If you're using Linux, you might have to create the folder first.</p>
 <p>The &ldquo;new site&rdquo; command will create a skeleton of a site. It will give you the basic directory structure and a useable configuration file.</p>
