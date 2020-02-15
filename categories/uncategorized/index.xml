@@ -6,19 +6,18 @@
     <description>Recent content in Uncategorized on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/categories/uncategorized/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Creating a New Theme</title>
-      <link>https://joyce-peng.github.io/2014/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      <title>Hugo LeaveIt主题优化| 如何删除/替换/添加图标</title>
+      <link>https://joyce-peng.github.io/2020/creating-a-new-theme/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://joyce-peng.github.io/2014/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&#39;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&#39;t cover using CSS to style your theme.
-We&#39;ll start with creating a new site with a very basic template.</description>
+      <guid>https://joyce-peng.github.io/2020/creating-a-new-theme/</guid>
+      <description>本站目前所用的主题是LeaveIt，主题的作者喜欢简单的风格，所以在布局上采用了大量的留白。Hugo主题看了不少，感觉还是这种简洁、干净、优</description>
     </item>
     
     <item>
