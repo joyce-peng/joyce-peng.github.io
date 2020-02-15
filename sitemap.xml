@@ -62,7 +62,7 @@
     </url>
   
     <url>
-      <loc>https://joyce-peng.github.io/categories/uncategorized/</loc>
+      <loc>https://joyce-peng.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</loc>
       
       <lastmod>2020-02-15T00:00:00+00:00</lastmod>
       
@@ -72,7 +72,7 @@
     </url>
   
     <url>
-      <loc>https://joyce-peng.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</loc>
+      <loc>https://joyce-peng.github.io/categories/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</loc>
       
       <lastmod>2020-02-15T00:00:00+00:00</lastmod>
       
@@ -85,206 +85,6 @@
       <loc>https://joyce-peng.github.io/about/</loc>
       
       <lastmod>2020-01-11T19:52:10+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/posts/news/</loc>
-      
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/categories/releases/</loc>
-      
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.48-relnotes/</loc>
-      
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.47.1-relnotes/</loc>
-      
-      <lastmod>2018-08-20T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.47-relnotes/</loc>
-      
-      <lastmod>2018-08-17T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.46-relnotes/</loc>
-      
-      <lastmod>2018-08-01T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.45.1-relnotes/</loc>
-      
-      <lastmod>2018-07-25T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.45-relnotes/</loc>
-      
-      <lastmod>2018-07-22T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.44-relnotes/</loc>
-      
-      <lastmod>2018-07-13T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2018/0.43-relnotes/</loc>
-      
-      <lastmod>2018-07-09T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/categories/blog/</loc>
-      
-      <lastmod>2017-07-24T18:36:00+02:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2017/http2-server-push-in-hugo/</loc>
-      
-      <lastmod>2017-07-24T18:36:00+02:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2014/goisforlovers/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/tags/development/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/tags/go/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/tags/golang/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/tags/templates/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/tags/themes/</loc>
-      
-      <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2014/hugoisforlovers/</loc>
-      
-      <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://joyce-peng.github.io/2014/migrate-from-jekyll/</loc>
-      
-      <lastmod>2014-03-10T00:00:00+00:00</lastmod>
       
       
       
