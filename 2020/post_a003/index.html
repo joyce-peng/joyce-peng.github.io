@@ -57,7 +57,7 @@
     "datePublished": "2020-03-25 23:53:26 \x2b0800 CST",
     "dateModified" : "2020-03-25 23:53:26 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a003\/",
-    "wordCount" : "2744",
+    "wordCount" : "2741",
     "keywords" : [ "目标检测", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"> 目标检测 </a>
                         
                 </span>
-				<span class="post-word-count">, 2744 words</span>
+				<span class="post-word-count">, 2741 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -160,7 +160,7 @@
 <p>输出：物体的类别</p>
 <p>评估方法：准确率mAP</p>
 <center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_2.jpg" width="50%">
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_2.jpg" width="45%">
 </center>
 <h3 id="定位localization">定位（localization）：</h3>
 <p>输入：图片</p>
@@ -170,9 +170,9 @@
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_3.jpg" width="50%">
 </center>
 <h2 id="单个物体的目标识别怎么做classification--localization">单个物体的目标识别怎么做（Classification + Localization）</h2>
-<p>识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）</p>
-<p>定位任务：分以下两种做法</p>
-<h3 id="看做回归问题需要预测出xywh四个参数的值从而得出方框的位置">看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</h3>
+<h3 id="识别任务卷积神经网络cnn为何用cnn请看注释1">识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）</h3>
+<h3 id="定位任务分以下两种做法">定位任务：分以下两种做法</h3>
+<h4 id="看做回归问题需要预测出xywh四个参数的值从而得出方框的位置">看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</h4>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_4.jpg" width="100%">
 </center>
@@ -181,29 +181,20 @@
 <p>步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。</p>
 <p>步骤3：预测阶段把2个头部拼上，完成不同的功能。</p>
 <center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="100%">
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="130%">
 </center>
-<h3 id="取图像窗口">取图像窗口</h3>
+<h4 id="取图像窗口">取图像窗口</h4>
 <p>步骤1：取不同的大小的“框”</p>
 <p>步骤2：让框出现在不同的位置，得出这个框的判定得分</p>
 <p>步骤3：取得分最高的那个框</p>
 <p>举例：</p>
 <center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_6.jpg" width="100%">
-</center>
-<center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_7.jpg" width="100%">
-</center>
-<center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_8.jpg" width="100%">
-</center>
-<center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_9.jpg" width="100%">
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_15.jpg" width="100%">
 </center>
 <p>左上角的黑框得分0.5，右上角的黑框得分0.75，左下角的黑框得分0.6，右下角的黑框得分0.8，
 根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。</p>
 <p>注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。</p>
-<p>小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。</p>
+<p>小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。如下图：</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_10.jpg" width="100%">
 </center>
@@ -218,9 +209,9 @@
 <p>为了解决这个问题，R-CNN横空出世（背景在注释[2]）：预先找出图中目标可能出现的位置，即候选区域（Region Proposal）。利用图像中的纹理、边缘、颜色等信息，可以保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率。所以，问题就转变成找出可能含有物体的区域/框（也就是候选区域/框，比如选2000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举所有框了。有了候选区域，剩下的工作实际就是对候选区域进行图像分类的工作（特征提取+分类）。</p>
 <p>那么如何得到候选区域呢？R-CNN采用了选择性搜索算法（Selective Search），它可以对具有相似颜色、纹理、面积、形状的图像区域进行合并分组计算，从而找到可能存在物体的区域，这些区域就是候选区域。最后再由这些候选区域生成候选框。该算法流程如下：</p>
 <center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_12.jpg" width="100%">
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_12.jpg" width="60%">
 </center>
-<p>解读：</p>
+<h3 id="解读">解读：</h3>
 <p>step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation</p>
 <p>step1：计算R里每个相邻区域的相似度S={s1,s2,…}</p>
 <p>step2：找出相似度最高的两个区域，将其合并为新集，添加进R</p>
@@ -228,27 +219,27 @@
 <p>step4：计算新集与所有子集的相似度</p>
 <p>step5：跳至step2，直至S为空</p>
 <p>Step6：从 R 中找出所有区域的 bounding box（即包围该区域的最小矩形框）</p>
-<p>举例：</p>
+<h3 id="举例">举例：</h3>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_13.jpg" width="100%">
 </center>
-<p>R-CNN检测的简要步骤如下：</p>
+<h3 id="r-cnn检测的简要步骤">R-CNN检测的简要步骤</h3>
 <p>步骤1：输入测试图像。</p>
 <p>步骤2：利用Selective Search算法在图像中从下到上提取2000个左右的可能包含物体的候选区域Region Proposal。</p>
 <p>步骤3：因为取出的区域大小各自不同，所以需要将每个Region Proposal缩放成统一的227x227的大小并输入到CNN，将CNN的fc7层的输出作为特征。</p>
 <p>步骤4：将每个Region Proposal提取到的CNN特征输入到SVM进行分类，每个类别对应一个SVM，判断是不是属于这个类别，是就是positive，反之nagative。</p>
 <p>步骤5：使用回归器精细修正候选框位置，对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。</p>
-<p>R-CNN的训练过程：</p>
+<h3 id="r-cnn的训练过程">R-CNN的训练过程</h3>
 <p>步骤1：有监督的预训练，即在大型辅助训练集ILSVRC2012分类数据集上预训练CNN（模型基于Caffe的CNN库）</p>
 <p>步骤2：特定领域的参数调优，即下载分类模型ImageNet，对其进行微调。</p>
 <p>步骤3：训练目标种类分类器，即训练每个类的线性SVM。</p>
-<p>性能参数：</p>
+<h3 id="性能参数">性能参数</h3>
 <p>准确率mAP：53.7（VOC 2010 test）、53.3（VOC 2011/12 test）</p>
 <p>速度：GPU条件下，检测一张图片需要47秒，不能满足实时性要求</p>
-<p>优点：</p>
+<h3 id="优点">优点</h3>
 <p>1）对比之前的算法，精度显著提高，在PASCAL VOC2010上从35.1%到53.7%</p>
 <p>2）将region proposal和CNN结合，实现了目标检测中图像特征的自动提取</p>
-<p>缺点：</p>
+<h3 id="缺点">缺点</h3>
 <p>1）训练分阶段，步骤繁琐：微调CNN网络+训练SVM+边框回归</p>
 <p>2）每个region proposal都需要经过CNN网络进行提取特征，产生大量特征文件，占用过多物理内存</p>
 <p>3）由于每个region proposal都需要需要经过CNN网络进行提取特征，导致检测速度慢</p>
