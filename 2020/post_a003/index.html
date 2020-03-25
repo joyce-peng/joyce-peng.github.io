@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "目标检测概述及对RCNN的理解",
     "headline" : "目标检测概述及对RCNN的理解",
-    "description" : "目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 1）识别（classification）： 输入：图",
+    "description" : "##目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 ###识别（classification）： 输",
     "inLanguage" : "zh-cn",
     "author" : "Joyce",
     "creator" : "Joyce",
@@ -57,7 +57,7 @@
     "datePublished": "2020-03-25 23:53:26 \x2b0800 CST",
     "dateModified" : "2020-03-25 23:53:26 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a003\/",
-    "wordCount" : "2764",
+    "wordCount" : "2772",
     "keywords" : [ "目标检测", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"> 目标检测 </a>
                         
                 </span>
-				<span class="post-word-count">, 2764 words</span>
+				<span class="post-word-count">, 2772 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -150,43 +150,43 @@
           
           
 
-          <h2 id="目标检测的任务">目标检测的任务</h2>
-<p>核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。</p>
+          <p>##目标检测的任务
+核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_1.jpg" width="100%">
 </center>
-<p>1）识别（classification）：
-输入：图片
-输出：物体的类别
-评估方法：准确率mAP</p>
+<p>###识别（classification）：</p>
+<p>输入：图片</p>
+<p>输出：物体的类别</p>
+<p>评估方法：准确率mAP</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_2.jpg" width="100%">
 </center>
-2）定位（localization）：
-输入：图片
-输出：方框在图片中的位置（x,y,w,h）
-评估方法：候选框与原标记框的交叠率IOU
+<p>###定位（localization）：
+输入：图片</p>
+<p>输出：方框在图片中的位置（x,y,w,h）</p>
+<p>评估方法：候选框与原标记框的交叠率IOU</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_3.jpg" width="100%">
 </center>
-<h2 id="单个物体的目标识别怎么做classification--localization">单个物体的目标识别怎么做（Classification + Localization）</h2>
-<p>识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）
-定位任务：分以下两种做法</p>
-<p>1）看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</p>
+<p>##单个物体的目标识别怎么做（Classification + Localization）</p>
+<p>识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）</p>
+<p>定位任务：分以下两种做法</p>
+<p>###看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_4.jpg" width="100%">
 </center>
-对应的方案：
-步骤1：搭一个卷积神经网络CNN。
-步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。
-步骤3：预测阶段把2个头部拼上，完成不同的功能。
+<p>对应的方案：</p>
+<p>步骤1：搭一个卷积神经网络CNN。</p>
+<p>步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。</p>
+<p>步骤3：预测阶段把2个头部拼上，完成不同的功能。</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="100%">
 </center>
-<p>2）	取图像窗口
-步骤1：取不同的大小的“框”
-步骤2：让框出现在不同的位置，得出这个框的判定得分
-步骤3：取得分最高的那个框</p>
+<p>###取图像窗口</p>
+<p>步骤1：取不同的大小的“框”</p>
+<p>步骤2：让框出现在不同的位置，得出这个框的判定得分</p>
+<p>步骤3：取得分最高的那个框</p>
 <p>举例：</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_6.jpg" width="100%">
@@ -201,16 +201,16 @@
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_9.jpg" width="100%">
 </center>
 <p>左上角的黑框得分0.5，右上角的黑框得分0.75，左下角的黑框得分0.6，右下角的黑框得分0.8，
-根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。
-注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。</p>
+根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。</p>
+<p>注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。</p>
 <p>小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_10.jpg" width="100%">
 </center>
 <p>##目标检测（Object Detection）
-相对于单个物体的识别，目标检测的难度更高，因为它需要对多个物体进行识别和定位，你需要找很多位置， 给很多个不同大小的框，还要对框内的图像分类。这时原来的方法就不太管用了，因为：
-1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余
-2）手工设计的特征对于多样性的变化没有很好的鲁棒性</p>
+相对于单个物体的识别，目标检测的难度更高，因为它需要对多个物体进行识别和定位，你需要找很多位置， 给很多个不同大小的框，还要对框内的图像分类。这时原来的方法就不太管用了，因为：</p>
+<p>1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余</p>
+<p>2）手工设计的特征对于多样性的变化没有很好的鲁棒性</p>
 <p>##R-CNN（Regions with CNN features）</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_11.jpg" width="100%">
@@ -220,57 +220,57 @@
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_12.jpg" width="100%">
 </center>
-<p>解读：
-step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation
-step1：计算R里每个相邻区域的相似度S={s1,s2,…}
-step2：找出相似度最高的两个区域，将其合并为新集，添加进R
-step3：从S中移除所有与step2中有关的子集
-step4：计算新集与所有子集的相似度
-step5：跳至step2，直至S为空
-Step6：从 R 中找出所有区域的 bounding box（即包围该区域的最小矩形框）</p>
+<p>解读：</p>
+<p>step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation</p>
+<p>step1：计算R里每个相邻区域的相似度S={s1,s2,…}</p>
+<p>step2：找出相似度最高的两个区域，将其合并为新集，添加进R</p>
+<p>step3：从S中移除所有与step2中有关的子集</p>
+<p>step4：计算新集与所有子集的相似度</p>
+<p>step5：跳至step2，直至S为空</p>
+<p>Step6：从 R 中找出所有区域的 bounding box（即包围该区域的最小矩形框）</p>
 <p>举例：</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_13.jpg" width="100%">
 </center>
-<p>R-CNN检测的简要步骤如下：
-步骤1：输入测试图像。
-步骤2：利用Selective Search算法在图像中从下到上提取2000个左右的可能包含物体的候选区域Region Proposal。
-步骤3：因为取出的区域大小各自不同，所以需要将每个Region Proposal缩放成统一的227x227的大小并输入到CNN，将CNN的fc7层的输出作为特征。
-步骤4：将每个Region Proposal提取到的CNN特征输入到SVM进行分类，每个类别对应一个SVM，判断是不是属于这个类别，是就是positive，反之nagative。
-步骤5：使用回归器精细修正候选框位置，对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。</p>
-<p>R-CNN的训练过程：
-步骤1：有监督的预训练，即在大型辅助训练集ILSVRC2012分类数据集上预训练CNN（模型基于Caffe的CNN库）
-步骤2：特定领域的参数调优，即下载分类模型ImageNet，对其进行微调。
-步骤3：训练目标种类分类器，即训练每个类的线性SVM。</p>
-<p>性能参数：
-准确率mAP：53.7（VOC 2010 test）、53.3（VOC 2011/12 test）
-速度：GPU条件下，检测一张图片需要47秒，不能满足实时性要求</p>
-<p>优点：
-1）对比之前的算法，精度显著提高，在PASCAL VOC2010上从35.1%到53.7%
-2）将region proposal和CNN结合，实现了目标检测中图像特征的自动提取</p>
-<p>缺点：
-1）训练分阶段，步骤繁琐：微调CNN网络+训练SVM+边框回归
-2）每个region proposal都需要经过CNN网络进行提取特征，产生大量特征文件，占用过多物理内存
-3）由于每个region proposal都需要需要经过CNN网络进行提取特征，导致检测速度慢
-4）由于使用SVM进行分类，无法实现端到端的训练</p>
+<p>R-CNN检测的简要步骤如下：</p>
+<p>步骤1：输入测试图像。</p>
+<p>步骤2：利用Selective Search算法在图像中从下到上提取2000个左右的可能包含物体的候选区域Region Proposal。</p>
+<p>步骤3：因为取出的区域大小各自不同，所以需要将每个Region Proposal缩放成统一的227x227的大小并输入到CNN，将CNN的fc7层的输出作为特征。</p>
+<p>步骤4：将每个Region Proposal提取到的CNN特征输入到SVM进行分类，每个类别对应一个SVM，判断是不是属于这个类别，是就是positive，反之nagative。</p>
+<p>步骤5：使用回归器精细修正候选框位置，对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。</p>
+<p>R-CNN的训练过程：</p>
+<p>步骤1：有监督的预训练，即在大型辅助训练集ILSVRC2012分类数据集上预训练CNN（模型基于Caffe的CNN库）</p>
+<p>步骤2：特定领域的参数调优，即下载分类模型ImageNet，对其进行微调。</p>
+<p>步骤3：训练目标种类分类器，即训练每个类的线性SVM。</p>
+<p>性能参数：</p>
+<p>准确率mAP：53.7（VOC 2010 test）、53.3（VOC 2011/12 test）</p>
+<p>速度：GPU条件下，检测一张图片需要47秒，不能满足实时性要求</p>
+<p>优点：</p>
+<p>1）对比之前的算法，精度显著提高，在PASCAL VOC2010上从35.1%到53.7%</p>
+<p>2）将region proposal和CNN结合，实现了目标检测中图像特征的自动提取</p>
+<p>缺点：</p>
+<p>1）训练分阶段，步骤繁琐：微调CNN网络+训练SVM+边框回归</p>
+<p>2）每个region proposal都需要经过CNN网络进行提取特征，产生大量特征文件，占用过多物理内存</p>
+<p>3）由于每个region proposal都需要需要经过CNN网络进行提取特征，导致检测速度慢</p>
+<p>4）由于使用SVM进行分类，无法实现端到端的训练</p>
 <p>##注释
-[1] 2012年ImageNet大规模视觉识别挑战赛（ILSVRC）上，机器学习泰斗Geoffrey Hinton教授带领学生Krizhevsky使用卷积神经网络将ILSVRC分类任务的Top-5 error降低到了15.3%，而使用传统方法的第二名top-5 error高达 26.2%。此后，卷积神经网络CNN占据了图像分类任务的绝对统治地位。
-[2] 2014年，RBG（Ross B. Girshick）使用Region Proposal + CNN代替传统目标检测使用的滑动窗口+手工设计特征，设计了R-CNN框架，使得目标检测取得巨大突破，并开启了基于深度学习目标检测的热潮。</p>
+[1] 2012年ImageNet大规模视觉识别挑战赛（ILSVRC）上，机器学习泰斗Geoffrey Hinton教授带领学生Krizhevsky使用卷积神经网络将ILSVRC分类任务的Top-5 error降低到了15.3%，而使用传统方法的第二名top-5 error高达 26.2%。此后，卷积神经网络CNN占据了图像分类任务的绝对统治地位。</p>
+<p>[2] 2014年，RBG（Ross B. Girshick）使用Region Proposal + CNN代替传统目标检测使用的滑动窗口+手工设计特征，设计了R-CNN框架，使得目标检测取得巨大突破，并开启了基于深度学习目标检测的热潮。</p>
 <p>##参考文献
-[1] Efficient Graph-Based Image Segmentation(IJCV, 2004)
-[2] Selective Search for Object Recognition(IJCV, 2013)
-[3] Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR, 2014)</p>
+[1] Efficient Graph-Based Image Segmentation(IJCV, 2004)</p>
+<p>[2] Selective Search for Object Recognition(IJCV, 2013)</p>
+<p>[3] Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR, 2014)</p>
 <p>##参考链接
-[1]	https://cloud.tencent.com/developer/news/281788
-[2]	https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
-[3]	https://www.jianshu.com/p/dbf58d84a2aa
-[4]	https://baijiahao.baidu.com/s?id=1598999301741831102&amp;wfr=spider&amp;for=pc
-[5]	https://blog.csdn.net/csyhhb/article/details/50425114</p>
+[1]	https://cloud.tencent.com/developer/news/281788</p>
+<p>[2]	https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/</p>
+<p>[3]	https://www.jianshu.com/p/dbf58d84a2aa</p>
+<p>[4]	https://baijiahao.baidu.com/s?id=1598999301741831102&amp;wfr=spider&amp;for=pc</p>
+<p>[5]	https://blog.csdn.net/csyhhb/article/details/50425114</p>
 <p>##补充
-目标检测算法分类：
-1）传统的目标检测算法：Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化。
-2）候选区域/框 + 深度学习分类：通过提取候选区域，并对相应区域进行以深度学习方法为主的分类的方案，如：R-CNN（Selective Search + CNN + SVM）、SPP-net（ROI Pooling）、Fast R-CNN（Selective Search + CNN + ROI）、Faster R-CNN（RPN + CNN + ROI）等。
-3）基于深度学习的回归方法：YOLO/SSD/DenseBox 等方法，以及结合RNN算法的RRC detection，结合DPM的Deformable CNN等。</p>
+目标检测算法分类：</p>
+<p>1）传统的目标检测算法：Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化。</p>
+<p>2）候选区域/框 + 深度学习分类：通过提取候选区域，并对相应区域进行以深度学习方法为主的分类的方案，如：R-CNN（Selective Search + CNN + SVM）、SPP-net（ROI Pooling）、Fast R-CNN（Selective Search + CNN + ROI）、Faster R-CNN（RPN + CNN + ROI）等。</p>
+<p>3）基于深度学习的回归方法：YOLO/SSD/DenseBox 等方法，以及结合RNN算法的RRC detection，结合DPM的Deformable CNN等。</p>
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_14.jpg" width="100%">
 </center>

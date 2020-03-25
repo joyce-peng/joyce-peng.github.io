@@ -17,7 +17,7 @@
       <pubDate>Wed, 25 Mar 2020 23:53:26 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/2020/post_a003/</guid>
-      <description>目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 1）识别（classification）： 输入：图</description>
+      <description>##目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 ###识别（classification）： 输</description>
     </item>
     
     <item>
