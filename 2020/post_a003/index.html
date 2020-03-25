@@ -57,7 +57,7 @@
     "datePublished": "2020-03-25 23:53:26 \x2b0800 CST",
     "dateModified" : "2020-03-25 23:53:26 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a003\/",
-    "wordCount" : "2741",
+    "wordCount" : "2747",
     "keywords" : [ "目标检测", "Joyce`s Blog"]
 }
 </script>
@@ -129,7 +129,7 @@
                         <a href="https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"> 目标检测 </a>
                         
                 </span>
-				<span class="post-word-count">, 2741 words</span>
+				<span class="post-word-count">, 2747 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -172,18 +172,18 @@
 <h2 id="单个物体的目标识别怎么做classification--localization">单个物体的目标识别怎么做（Classification + Localization）</h2>
 <h3 id="识别任务卷积神经网络cnn为何用cnn请看注释1">识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）</h3>
 <h3 id="定位任务分以下两种做法">定位任务：分以下两种做法</h3>
-<h4 id="看做回归问题需要预测出xywh四个参数的值从而得出方框的位置">看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</h4>
+<h4 id="1看做回归问题需要预测出xywh四个参数的值从而得出方框的位置">1）看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</h4>
 <center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_4.jpg" width="100%">
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_4.jpg" width="80%">
+</center>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="100%">
 </center>
 <p>对应的方案：</p>
 <p>步骤1：搭一个卷积神经网络CNN。</p>
 <p>步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。</p>
 <p>步骤3：预测阶段把2个头部拼上，完成不同的功能。</p>
-<center>
-<img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="130%">
-</center>
-<h4 id="取图像窗口">取图像窗口</h4>
+<h4 id="2取图像窗口">2）取图像窗口</h4>
 <p>步骤1：取不同的大小的“框”</p>
 <p>步骤2：让框出现在不同的位置，得出这个框的判定得分</p>
 <p>步骤3：取得分最高的那个框</p>
@@ -206,6 +206,7 @@
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_11.jpg" width="100%">
 </center>
+&nbsp
 <p>为了解决这个问题，R-CNN横空出世（背景在注释[2]）：预先找出图中目标可能出现的位置，即候选区域（Region Proposal）。利用图像中的纹理、边缘、颜色等信息，可以保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率。所以，问题就转变成找出可能含有物体的区域/框（也就是候选区域/框，比如选2000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举所有框了。有了候选区域，剩下的工作实际就是对候选区域进行图像分类的工作（特征提取+分类）。</p>
 <p>那么如何得到候选区域呢？R-CNN采用了选择性搜索算法（Selective Search），它可以对具有相似颜色、纹理、面积、形状的图像区域进行合并分组计算，从而找到可能存在物体的区域，这些区域就是候选区域。最后再由这些候选区域生成候选框。该算法流程如下：</p>
 <center>
@@ -223,6 +224,7 @@
 <center>
 <img src="http://wwxlpy.cn/blog_image/posta003/posta003_13.jpg" width="100%">
 </center>
+&nbsp
 <h3 id="r-cnn检测的简要步骤">R-CNN检测的简要步骤</h3>
 <p>步骤1：输入测试图像。</p>
 <p>步骤2：利用Selective Search算法在图像中从下到上提取2000个左右的可能包含物体的候选区域Region Proposal。</p>
