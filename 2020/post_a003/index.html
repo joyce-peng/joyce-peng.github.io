@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Joyce">
+  
+  
+  
+  <link rel="prev" href="https://joyce-peng.github.io/2020/post_a002/" />
+  
+  <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a003/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://wwxlpy.cn/blog_image/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://wwxlpy.cn/blog_image/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           目标检测概述及对RCNN的理解 | Joyce`s Blog
+       
+  </title>
+  <meta name="title" content="目标检测概述及对RCNN的理解 | Joyce`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/joyce-peng.github.io"
+    },
+    "articleSection" : "posts",
+    "name" : "目标检测概述及对RCNN的理解",
+    "headline" : "目标检测概述及对RCNN的理解",
+    "description" : "目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 1）识别（classification）： 输入：图",
+    "inLanguage" : "zh-cn",
+    "author" : "Joyce",
+    "creator" : "Joyce",
+    "publisher": "Joyce",
+    "accountablePerson" : "Joyce",
+    "copyrightHolder" : "Joyce",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-03-25 23:53:26 \x2b0800 CST",
+    "dateModified" : "2020-03-25 23:53:26 \x2b0800 CST",
+    "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a003\/",
+    "wordCount" : "2764",
+    "keywords" : [ "目标检测", "Joyce`s Blog"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+				<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">目标检测概述及对RCNN的理解</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-03-25 itemprop="datePublished">March 25, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"> 目标检测 </a>
+                        
+                </span>
+				<span class="post-word-count">, 2764 words</span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h2 id="目标检测的任务">目标检测的任务</h2>
+<p>核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_1.jpg" width="100%">
+</center>
+<p>1）识别（classification）：
+输入：图片
+输出：物体的类别
+评估方法：准确率mAP</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_2.jpg" width="100%">
+</center>
+2）定位（localization）：
+输入：图片
+输出：方框在图片中的位置（x,y,w,h）
+评估方法：候选框与原标记框的交叠率IOU
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_3.jpg" width="100%">
+</center>
+<h2 id="单个物体的目标识别怎么做classification--localization">单个物体的目标识别怎么做（Classification + Localization）</h2>
+<p>识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]）
+定位任务：分以下两种做法</p>
+<p>1）看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_4.jpg" width="100%">
+</center>
+对应的方案：
+步骤1：搭一个卷积神经网络CNN。
+步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。
+步骤3：预测阶段把2个头部拼上，完成不同的功能。
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_5.jpg" width="100%">
+</center>
+<p>2）	取图像窗口
+步骤1：取不同的大小的“框”
+步骤2：让框出现在不同的位置，得出这个框的判定得分
+步骤3：取得分最高的那个框</p>
+<p>举例：</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_6.jpg" width="100%">
+</center>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_7.jpg" width="100%">
+</center>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_8.jpg" width="100%">
+</center>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_9.jpg" width="100%">
+</center>
+<p>左上角的黑框得分0.5，右上角的黑框得分0.75，左下角的黑框得分0.6，右下角的黑框得分0.8，
+根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。
+注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。</p>
+<p>小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_10.jpg" width="100%">
+</center>
+<p>##目标检测（Object Detection）
+相对于单个物体的识别，目标检测的难度更高，因为它需要对多个物体进行识别和定位，你需要找很多位置， 给很多个不同大小的框，还要对框内的图像分类。这时原来的方法就不太管用了，因为：
+1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余
+2）手工设计的特征对于多样性的变化没有很好的鲁棒性</p>
+<p>##R-CNN（Regions with CNN features）</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_11.jpg" width="100%">
+</center>
+<p>为了解决这个问题，R-CNN横空出世（背景在注释[2]）：预先找出图中目标可能出现的位置，即候选区域（Region Proposal）。利用图像中的纹理、边缘、颜色等信息，可以保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率。所以，问题就转变成找出可能含有物体的区域/框（也就是候选区域/框，比如选2000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举所有框了。有了候选区域，剩下的工作实际就是对候选区域进行图像分类的工作（特征提取+分类）。</p>
+<p>那么如何得到候选区域呢？R-CNN采用了选择性搜索算法（Selective Search），它可以对具有相似颜色、纹理、面积、形状的图像区域进行合并分组计算，从而找到可能存在物体的区域，这些区域就是候选区域。最后再由这些候选区域生成候选框。该算法流程如下：</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_12.jpg" width="100%">
+</center>
+<p>解读：
+step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation
+step1：计算R里每个相邻区域的相似度S={s1,s2,…}
+step2：找出相似度最高的两个区域，将其合并为新集，添加进R
+step3：从S中移除所有与step2中有关的子集
+step4：计算新集与所有子集的相似度
+step5：跳至step2，直至S为空
+Step6：从 R 中找出所有区域的 bounding box（即包围该区域的最小矩形框）</p>
+<p>举例：</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_13.jpg" width="100%">
+</center>
+<p>R-CNN检测的简要步骤如下：
+步骤1：输入测试图像。
+步骤2：利用Selective Search算法在图像中从下到上提取2000个左右的可能包含物体的候选区域Region Proposal。
+步骤3：因为取出的区域大小各自不同，所以需要将每个Region Proposal缩放成统一的227x227的大小并输入到CNN，将CNN的fc7层的输出作为特征。
+步骤4：将每个Region Proposal提取到的CNN特征输入到SVM进行分类，每个类别对应一个SVM，判断是不是属于这个类别，是就是positive，反之nagative。
+步骤5：使用回归器精细修正候选框位置，对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。</p>
+<p>R-CNN的训练过程：
+步骤1：有监督的预训练，即在大型辅助训练集ILSVRC2012分类数据集上预训练CNN（模型基于Caffe的CNN库）
+步骤2：特定领域的参数调优，即下载分类模型ImageNet，对其进行微调。
+步骤3：训练目标种类分类器，即训练每个类的线性SVM。</p>
+<p>性能参数：
+准确率mAP：53.7（VOC 2010 test）、53.3（VOC 2011/12 test）
+速度：GPU条件下，检测一张图片需要47秒，不能满足实时性要求</p>
+<p>优点：
+1）对比之前的算法，精度显著提高，在PASCAL VOC2010上从35.1%到53.7%
+2）将region proposal和CNN结合，实现了目标检测中图像特征的自动提取</p>
+<p>缺点：
+1）训练分阶段，步骤繁琐：微调CNN网络+训练SVM+边框回归
+2）每个region proposal都需要经过CNN网络进行提取特征，产生大量特征文件，占用过多物理内存
+3）由于每个region proposal都需要需要经过CNN网络进行提取特征，导致检测速度慢
+4）由于使用SVM进行分类，无法实现端到端的训练</p>
+<p>##注释
+[1] 2012年ImageNet大规模视觉识别挑战赛（ILSVRC）上，机器学习泰斗Geoffrey Hinton教授带领学生Krizhevsky使用卷积神经网络将ILSVRC分类任务的Top-5 error降低到了15.3%，而使用传统方法的第二名top-5 error高达 26.2%。此后，卷积神经网络CNN占据了图像分类任务的绝对统治地位。
+[2] 2014年，RBG（Ross B. Girshick）使用Region Proposal + CNN代替传统目标检测使用的滑动窗口+手工设计特征，设计了R-CNN框架，使得目标检测取得巨大突破，并开启了基于深度学习目标检测的热潮。</p>
+<p>##参考文献
+[1] Efficient Graph-Based Image Segmentation(IJCV, 2004)
+[2] Selective Search for Object Recognition(IJCV, 2013)
+[3] Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR, 2014)</p>
+<p>##参考链接
+[1]	https://cloud.tencent.com/developer/news/281788
+[2]	https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
+[3]	https://www.jianshu.com/p/dbf58d84a2aa
+[4]	https://baijiahao.baidu.com/s?id=1598999301741831102&amp;wfr=spider&amp;for=pc
+[5]	https://blog.csdn.net/csyhhb/article/details/50425114</p>
+<p>##补充
+目标检测算法分类：
+1）传统的目标检测算法：Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化。
+2）候选区域/框 + 深度学习分类：通过提取候选区域，并对相应区域进行以深度学习方法为主的分类的方案，如：R-CNN（Selective Search + CNN + SVM）、SPP-net（ROI Pooling）、Fast R-CNN（Selective Search + CNN + ROI）、Faster R-CNN（RPN + CNN + ROI）等。
+3）基于深度学习的回归方法：YOLO/SSD/DenseBox 等方法，以及结合RNN算法的RRC detection，结合DPM的Deformable CNN等。</p>
+<center>
+<img src="http://wwxlpy.cn/blog_image/posta003/posta003_14.jpg" width="100%">
+</center>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Joyce </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://joyce-peng.github.io/2020/post_a003/>https://joyce-peng.github.io/2020/post_a003/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://joyce-peng.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                    #目标检测</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://joyce-peng.github.io">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://joyce-peng.github.io/2020/post_a002/" class="prev" rel="prev" title="Hugo内嵌html失败"><i class="iconfont icon-left"></i>&nbsp;Hugo内嵌html失败</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+		
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: '8044ce96362b7714a187',
+    clientSecret: '3b4821face6c84392e45079078ac01ed6a255587',
+    repo: 'joyce-peng.github.io',
+    owner: 'joyce-peng',
+    admin: ['joyce-peng'],
+    id: location.pathname, 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2019 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://joyce-peng.github.io">Joyce</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
