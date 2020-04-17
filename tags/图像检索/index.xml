@@ -17,7 +17,7 @@
       <pubDate>Fri, 17 Apr 2020 21:31:39 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/2020/post_a004/</guid>
-      <description>R-MAC (Regional Maximum Activation of Convolutions) (1) 假设卷积网络结构中，最后一个卷积层产生的feature map大小为WHK。在每个feature map上以L个不同的尺度产生re</description>
+      <description>R-MAC (Regional Maximum Activation of Convolutions) &amp;nbsp (1) 假设卷积网络结构中，最后一个卷积层产生的feature map大小为WHK。在每个feature map上以L个不同的尺度产生r</description>
     </item>
     
   </channel>
