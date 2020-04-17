@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图像检索 on Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/categories/%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/</link>
+    <description>Recent content in 图像检索 on Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 17 Apr 2020 21:31:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/categories/%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图像检索中的空间池化操作-R-MAC、GeM</title>
+      <link>https://joyce-peng.github.io/2020/post_a004/</link>
+      <pubDate>Fri, 17 Apr 2020 21:31:39 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a004/</guid>
+      <description>R-MAC (Regional Maximum Activation of Convolutions) (1) 假设卷积网络结构中，最后一个卷积层产生的feature map大小为WHK。在每个feature map上以L个不同的尺度产生re</description>
+    </item>
+    
+  </channel>
+</rss>
