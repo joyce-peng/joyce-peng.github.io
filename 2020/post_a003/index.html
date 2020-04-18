@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "目标检测概述及对R-CNN的理解",
     "headline" : "目标检测概述及对R-CNN的理解",
-    "description" : "目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。\n  识别（classification）： 输入：图片\n输出：物体的类别\n评估方法：准确率mAP\n  定位（localization）： 输入：图片\n输出：方框在图片中的位置（x,y,w,h）\n评估方法：候选框与原标记框的交叠率IOU\n  \x26nbsp 单个物体的目标识别怎么做（Classification \x2b Localization） 识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]） 定位任务：分以下两种做法 1）看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。 对应的方案：\n步骤1：搭一个卷积神经网络CNN。\n步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。\n步骤3：预测阶段把2个头部拼上，完成不同的功能。\n    \x26nbsp 2）取图像窗口 步骤1：取不同的大小的“框”\n步骤2：让框出现在不同的位置，得出这个框的判定得分\n步骤3：取得分最高的那个框\n举例：\n  左上角的黑框得分0.5，右上角的黑框得分0.75，左下角的黑框得分0.6，右下角的黑框得分0.8， 根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。\n注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。\n小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。如下图：\n  \x26nbsp 目标检测（Object Detection） 相对于单个物体的识别，目标检测的难度更高，因为它需要对多个物体进行识别和定位，你需要找很多位置， 给很多个不同大小的框，还要对框内的图像分类。这时原来的方法就不太管用了，因为：\n1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余\n2）手工设计的特征对于多样性的变化没有很好的鲁棒性\nR-CNN（Regions with CNN features）   \x26nbsp 为了解决这个问题，R-CNN横空出世（背景在注释[2]）：预先找出图中目标可能出现的位置，即候选区域（Region Proposal）。利用图像中的纹理、边缘、颜色等信息，可以保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率。所以，问题就转变成找出可能含有物体的区域\/框（也就是候选区域\/框，比如选2000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举所有框了。有了候选区域，剩下的工作实际就是对候选区域进行图像分类的工作（特征提取\x2b分类）。\n那么如何得到候选区域呢？R-CNN采用了选择性搜索算法（Selective Search），它可以对具有相似颜色、纹理、面积、形状的图像区域进行合并分组计算，从而找到可能存在物体的区域，这些区域就是候选区域。最后再由这些候选区域生成候选框。该算法流程如下：\n  解读： step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation",
+    "description" : "目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 识别（classification）： 输入：图片 输",
     "inLanguage" : "zh-cn",
     "author" : "Joyce",
     "creator" : "Joyce",
@@ -57,7 +57,7 @@
     "datePublished": "2020-03-25 23:53:26 \x2b0800 CST",
     "dateModified" : "2020-03-25 23:53:26 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a003\/",
-    "wordCount" : "179",
+    "wordCount" : "2750",
     "keywords" : [ "目标检测", "Joyce`s Blog"]
 }
 </script>
@@ -67,6 +67,8 @@
   
 
 
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <body class="">
     <div class="wrapper">
         <nav class="navbar">
@@ -135,7 +137,8 @@
                         <a href="https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"> 目标检测 </a>
                         
                 </span>
-				<span class="post-word-count">, 179 words</span>
+				<span class="post-word-count">, 2750 words</span>
+				<span class="post-category">, 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
         </div>
     </header>
     <div class="post-content">
@@ -358,7 +361,16 @@
           </div>
 		   </main>
       <footer class="footer">
+
     <div class="copyright">
+	
+		<span id="busuanzi_container_site_pv">
+		本站总访问量<span id="busuanzi_value_site_pv" style="display:inline;"></span>次
+		</span>
+		<span id="busuanzi_container_site_uv" style="display:inline;">
+		您是本站第<span id="busuanzi_value_site_uv"></span>位访问者
+		</span>
+
         &copy;
         
         <span itemprop="copyrightYear">2019 - 2020</span>

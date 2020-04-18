@@ -17,9 +17,7 @@
       <pubDate>Sun, 16 Feb 2020 01:04:01 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/2020/post_a002/</guid>
-      <description>在md文件中插入图片时发现hugo好像没办法正常显示markdown中内嵌的html，后来谷歌到了解决办法，记录一下。
-在2019年11月的hugo更新中，使用了Goldmark作为默认库，想要内嵌html，就得在config.toml中加入下面代码。
-[markup] [markup.goldmark] [markup.goldmark.renderer] unsafe = true </description>
+      <description>在md文件中插入图片时发现hugo好像没办法正常显示markdown中内嵌的html，后来谷歌到了解决办法，记录一下。 在2019年11月的h</description>
     </item>
     
   </channel>
