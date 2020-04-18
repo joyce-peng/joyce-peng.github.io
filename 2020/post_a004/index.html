@@ -72,7 +72,7 @@
         <nav class="navbar">
     <div class="container">
         <div class="navbar-header header-logo">
-        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a>
+        	<a href="javascript:void(0);" class=""><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a>
         </div>
         <div class="menu navbar-right">
                 
@@ -89,6 +89,7 @@
         </div>
     </div>
 </nav>
+
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
      <div class="container">
         <div class="navbar-header">
@@ -151,7 +152,7 @@
           
 
           <h2 id="r-mac-regional-maximum-activation-of-convolutions">R-MAC (Regional Maximum Activation of Convolutions)</h2>
-<img src="http://wwxlpy.cn/blog_image/posta004/posta004_1.jpg" width="50%" style=“float:left”>
+<img src="http://wwxlpy.cn/blog_image/posta004/posta004_1.jpg" width="50%">
 &nbsp
 <p>(1) 假设卷积网络结构中，最后一个卷积层产生的feature map大小为W * H * K。在每个feature map上以L个不同的尺度产生regions。如图所示，依次为L=1,2,3。L= 1时，把特征图上以重叠40%左右能采到的regions个数记为参数m。对于第L个尺度，采样的正方形区域个数为L*(L+m-1)个，区域大小为2*min(H,W)/(L+1)。所有尺度加起来的region个数N=L1+L2+L3。</p>
 <p>(2)以产生的第一个region R1为例，其中的每一层d（1&lt;=d&lt;=K）均会产生一个大小位置与R1相同的regions。从d层的每个region中找到其最大的激活值 f（R1,d），以该最大值代表该层的region。所以R1的feature vector可以表示为 f（R1）=[ f（R1,1），&hellip;，f（R1,d），&hellip;，f（R1,K）]。对该feature vector做L2归一化、PCA白化、L2归一化后得到一个1×k的向量。有N个region，所以会有N个1×k的向量。</p>
