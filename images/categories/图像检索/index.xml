@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图像检索 on &gt; Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/categories/%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/</link>
+    <description>Recent content in 图像检索 on &gt; Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 17 Apr 2020 21:31:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/categories/%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图像检索中的空间池化操作——R-MAC、GeM</title>
+      <link>https://joyce-peng.github.io/2020/post_a004/</link>
+      <pubDate>Fri, 17 Apr 2020 21:31:39 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a004/</guid>
+      <description>R-MAC (Regional Maximum Activation of Convolutions) &amp;nbsp (1) 假设卷积网络结构中，最后一个卷积层产生的feature map大小为W * H * K。在每个feature map上以L个不同的尺度产生regions。如图所示，依次为L=1,2,3。L= 1时，把特征图上以重叠40%左右能采到的regions个数记为参数m。对于第L个尺度，采样的正方形区域个数为L*(L+m-1)个，区域大小为2*min(H,W)/(L+1)。所有尺度加起来的region个数N=L1+L2+L3。
+(2)以产生的第一个region R1为例，其中的每一层d（1&amp;lt;=d&amp;lt;=K）均会产生一个大小位置与R1相同的regions。从d层的每个region中找到其最大的激活值 f（R1,d），以该最大值代表该层的region。所以R1的feature vector可以表示为 f（R1）=[ f（R1,1），&amp;hellip;，f（R1,d），&amp;hellip;，f（R1,K）]。对该feature vector做L2归一化、PCA白化、L2归一化后得到一个1×k的向量。有N个region，所以会有N个1×k的向量。
+(3) 接着把产生的N个区域向量都累加起来并再做一次L2归一化，最终产生的 f 就是R-MAC特征向量。
+优点：
+(1)与全连接层提取的特征相比，卷积层提取的特征更多地保留了输入图像的局部特征和目标空间信息，并且卷积层特征对于图像变换更具鲁棒性。
+(2) R-MAC构建了紧凑的特征向量，可以对多个图像区域进行编码，提高了图像检索的性能。
+GeM (Generalized Mean Pooling) 和R-MAC一样都是在feature map上进行的，只是R-MAC是取区域内最大的值，而GeM是取整个feature map的带指数的平均，也就是整张图的每个像素的p次方求和再开p次方。指数p＞1时会增大输入特征图的对比度，专注于输入特征图突出的部分。GeM的embedding公式如下：</description>
+    </item>
+    
+  </channel>
+</rss>

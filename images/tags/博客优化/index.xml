@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客优化 on &gt; Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</link>
+    <description>Recent content in 博客优化 on &gt; Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo LeaveIt主题优化 | 如何删除/替换/添加图标</title>
+      <link>https://joyce-peng.github.io/2020/post_a001/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a001/</guid>
+      <description>本站目前所用的主题是LeaveIt，主题的作者喜欢简单的风格，所以在布局上采用了大量的留白。Hugo主题看了不少，感觉还是这种简洁、干净、优雅的主题比较打动我。
+删除图标 下载好的主题有些地方与自己实际想要的效果还是有点差距的，比如首页那一长排的图标，很多用不上。如果你想删除其中的一些，可以直接在config.toml中，把params.social下不用的图标注释掉，这样首页就不会再显示这些图标了。
+ &amp;nbsp   注释前   注释后  替换图标 如果想把首页的图标替换成别的，可以在阿里巴巴矢量图库找到自己喜欢的图标，将其添加到库，然后下载代码。
+&amp;nbsp &amp;nbsp  &amp;nbsp  下载的文件解压后有不少东西，但是需要用到的只有下面几个。
+第一步 先修改下面几个文件的名称。
+第二步 打开hugo项目的主题目录，找到font文件夹（..\myBlog\themes\LeaveIt\assets\font），font中也有一个iconfont.css，打开它，把刚刚下载文件中的iconfont.css的@font-face粘贴到font中的iconfont.css，注意更改名称，否则会有冲突。然后把下载文件的iconfont.css中新增图标的信息也复制到font中的iconfont.css。
+第三步 把这四个文件复制到font文件夹。
+第四步 打开..\myBlog\themes\LeaveIt\layouts\partials\social.html，按需增添链接。
+第五步 修改config.toml中的params.social。
+效果 添加图标 如果想在页面的某个地方添加图标，比如LeaveIt主题切换黑/白风格的按钮是在左上方的爱心，我想把这个功能放在目录右边的位置，并改成太阳的图标，看看如何来操作。
+第一步 按替换图标的方法，把在阿里巴巴矢量库中下载的太阳图标添加进font文件。
+第二步 打开..\myBlog\themes\LeaveIt\layouts\partials\ header.html，改动以下地方。 效果 改动前 改动后 </description>
+    </item>
+    
+  </channel>
+</rss>

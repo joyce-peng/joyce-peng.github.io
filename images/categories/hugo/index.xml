@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on &gt; Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/categories/hugo/</link>
+    <description>Recent content in Hugo on &gt; Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 16 Feb 2020 01:04:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo内嵌html失败</title>
+      <link>https://joyce-peng.github.io/2020/post_a002/</link>
+      <pubDate>Sun, 16 Feb 2020 01:04:01 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a002/</guid>
+      <description>在md文件中插入图片时发现hugo好像没办法正常显示markdown中内嵌的html，后来谷歌到了解决办法，记录一下。
+在2019年11月的hugo更新中，使用了Goldmark作为默认库，想要内嵌html，就得在config.toml中加入下面代码。
+[markup] [markup.goldmark] [markup.goldmark.renderer] unsafe = true </description>
+    </item>
+    
+  </channel>
+</rss>
