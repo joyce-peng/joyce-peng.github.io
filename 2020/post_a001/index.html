@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
-  <meta name="author" content="&gt; Joyce">
+  <meta name="author" content="Joyce">
   
   
   
@@ -22,10 +22,10 @@
   <title>
        
        
-           Hugo LeaveIt主题优化 | 如何删除/替换/添加图标 | Joyce`s Blog
+           Hugo LeaveIt主题优化 | 如何删除/替换/添加图标 | &gt; Joyce`s Blog
        
   </title>
-  <meta name="title" content="Hugo LeaveIt主题优化 | 如何删除/替换/添加图标 | Joyce`s Blog">
+  <meta name="title" content="Hugo LeaveIt主题优化 | 如何删除/替换/添加图标 | &gt; Joyce`s Blog">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "Hugo LeaveIt主题优化 | 如何删除\/替换\/添加图标",
     "headline" : "Hugo LeaveIt主题优化 | 如何删除\/替换\/添加图标",
-    "description" : "本站目前所用的主题是LeaveIt，主题的作者喜欢简单的风格，所以在布局上采用了大量的留白。Hugo主题看了不少，感觉还是这种简洁、干净、优",
+    "description" : "本站目前所用的主题是LeaveIt，主题的作者喜欢简单的风格，所以在布局上采用了大量的留白。Hugo主题看了不少，感觉还是这种简洁、干净、优雅的主题比较打动我。\n删除图标 下载好的主题有些地方与自己实际想要的效果还是有点差距的，比如首页那一长排的图标，很多用不上。如果你想删除其中的一些，可以直接在config.toml中，把params.social下不用的图标注释掉，这样首页就不会再显示这些图标了。\n \x26nbsp   注释前   注释后  替换图标 如果想把首页的图标替换成别的，可以在阿里巴巴矢量图库找到自己喜欢的图标，将其添加到库，然后下载代码。\n\x26nbsp \x26nbsp  \x26nbsp  下载的文件解压后有不少东西，但是需要用到的只有下面几个。\n第一步 先修改下面几个文件的名称。\n第二步 打开hugo项目的主题目录，找到font文件夹（..\\myBlog\\themes\\LeaveIt\\assets\\font），font中也有一个iconfont.css，打开它，把刚刚下载文件中的iconfont.css的@font-face粘贴到font中的iconfont.css，注意更改名称，否则会有冲突。然后把下载文件的iconfont.css中新增图标的信息也复制到font中的iconfont.css。\n第三步 把这四个文件复制到font文件夹。\n第四步 打开..\\myBlog\\themes\\LeaveIt\\layouts\\partials\\social.html，按需增添链接。\n第五步 修改config.toml中的params.social。\n效果 添加图标 如果想在页面的某个地方添加图标，比如LeaveIt主题切换黑\/白风格的按钮是在左上方的爱心，我想把这个功能放在目录右边的位置，并改成太阳的图标，看看如何来操作。\n第一步 按替换图标的方法，把在阿里巴巴矢量库中下载的太阳图标添加进font文件。\n第二步 打开..\\myBlog\\themes\\LeaveIt\\layouts\\partials\\ header.html，改动以下地方。 效果 改动前 改动后 ",
     "inLanguage" : "zh-cn",
     "author" : "Joyce",
     "creator" : "Joyce",
@@ -57,8 +57,8 @@
     "datePublished": "2020-02-15 00:00:00 \x2b0000 UTC",
     "dateModified" : "2020-02-15 00:00:00 \x2b0000 UTC",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a001\/",
-    "wordCount" : "835",
-    "keywords" : [ "博客优化","Hugo", "Joyce`s Blog"]
+    "wordCount" : "33",
+    "keywords" : [ "博客优化","Hugo", "\x3e Joyce`s Blog"]
 }
 </script>
 
@@ -70,10 +70,17 @@
   <body class="">
     <div class="wrapper">
         <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
     <div class="container">
-        <div class="navbar-header header-logo">
-        	<a href="https://joyce-peng.github.io">Joyce`s Blog</a>
-        </div>
+		
+            <div class="navbar-header header-back2home-logo">
+                <a href="https://joyce-peng.github.io">
+                    <span class="logo_text" >Back Home</span>
+                </a>
+            </div>
+        
         <div class="menu navbar-right">
                 
                 
@@ -93,7 +100,7 @@
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
      <div class="container">
         <div class="navbar-header">
-            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a></div>
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://joyce-peng.github.io">&gt; Joyce`s Blog</a></div>
             <div class="menu-toggle">
                 <span></span><span></span><span></span>
             </div>
@@ -130,7 +137,7 @@
                         <a href="https://joyce-peng.github.io/categories/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/"> 博客优化 </a>
                         
                 </span>
-				<span class="post-word-count">, 835 words</span>
+				<span class="post-word-count">, 33 words</span>
         </div>
     </header>
     <div class="post-content">
@@ -216,7 +223,7 @@
              
             <p class="copyright-item">
                 <span>Author:</span>
-                <span>&gt; Joyce </span>
+                <span>Joyce </span>
                 </p>
             
            
@@ -301,7 +308,7 @@
     	 <i class="iconfont icon-love"></i> 
          </span>
          
-            <span class="author" itemprop="copyrightHolder"><a href="https://joyce-peng.github.io">&gt; Joyce</a> | </span> 
+            <span class="author" itemprop="copyrightHolder"><a href="https://joyce-peng.github.io">Joyce</a> | </span> 
          
 
          

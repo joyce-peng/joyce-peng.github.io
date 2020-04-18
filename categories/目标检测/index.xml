@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>目标检测 on Joyce`s Blog</title>
+    <title>目标检测 on &gt; Joyce`s Blog</title>
     <link>https://joyce-peng.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</link>
-    <description>Recent content in 目标检测 on Joyce`s Blog</description>
+    <description>Recent content in 目标检测 on &gt; Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 25 Mar 2020 23:53:26 +0800</lastBuildDate>
@@ -17,7 +17,30 @@
       <pubDate>Wed, 25 Mar 2020 23:53:26 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/2020/post_a003/</guid>
-      <description>目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。 识别（classification）： 输入：图片 输</description>
+      <description>目标检测的任务 核心：既要把图中多个物体识别出来（识别），又要用方框框出它们的位置（定位）。
+  识别（classification）： 输入：图片
+输出：物体的类别
+评估方法：准确率mAP
+  定位（localization）： 输入：图片
+输出：方框在图片中的位置（x,y,w,h）
+评估方法：候选框与原标记框的交叠率IOU
+  &amp;nbsp 单个物体的目标识别怎么做（Classification + Localization） 识别任务：卷积神经网络CNN（为何用CNN，请看注释[1]） 定位任务：分以下两种做法 1）看做回归问题，需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。 对应的方案：
+步骤1：搭一个卷积神经网络CNN。
+步骤2：在上述神经网络的尾部作出改进，加了两个头，分别是“分类头”和“回归头”。
+步骤3：预测阶段把2个头部拼上，完成不同的功能。
+    &amp;nbsp 2）取图像窗口 步骤1：取不同的大小的“框”
+步骤2：让框出现在不同的位置，得出这个框的判定得分
+步骤3：取得分最高的那个框
+举例：
+  左上角的黑框得分0.5，右上角的黑框得分0.75，左下角的黑框得分0.6，右下角的黑框得分0.8， 根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。
+注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。
+小结：对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。如下图：
+  &amp;nbsp 目标检测（Object Detection） 相对于单个物体的识别，目标检测的难度更高，因为它需要对多个物体进行识别和定位，你需要找很多位置， 给很多个不同大小的框，还要对框内的图像分类。这时原来的方法就不太管用了，因为：
+1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余
+2）手工设计的特征对于多样性的变化没有很好的鲁棒性
+R-CNN（Regions with CNN features）   &amp;nbsp 为了解决这个问题，R-CNN横空出世（背景在注释[2]）：预先找出图中目标可能出现的位置，即候选区域（Region Proposal）。利用图像中的纹理、边缘、颜色等信息，可以保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率。所以，问题就转变成找出可能含有物体的区域/框（也就是候选区域/框，比如选2000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举所有框了。有了候选区域，剩下的工作实际就是对候选区域进行图像分类的工作（特征提取+分类）。
+那么如何得到候选区域呢？R-CNN采用了选择性搜索算法（Selective Search），它可以对具有相似颜色、纹理、面积、形状的图像区域进行合并分组计算，从而找到可能存在物体的区域，这些区域就是候选区域。最后再由这些候选区域生成候选框。该算法流程如下：
+  解读： step0：生成区域集R，方法具体参见论文Efficient Graph-Based Image Segmentation</description>
     </item>
     
   </channel>
