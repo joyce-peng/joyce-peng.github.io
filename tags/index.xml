@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 Apr 2020 21:31:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2020 23:39:43 +0800</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>机器学习</title>
+      <link>https://joyce-peng.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 29 Apr 2020 23:39:43 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>图像检索</title>

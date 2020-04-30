@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Joyce">
+  
+  
+  
+  <link rel="prev" href="https://joyce-peng.github.io/2020/post_a004/" />
+  
+  <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a005/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/headers/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/headers/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/headers/favicon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           读书笔记 | PCA主成分分析原理 | Joyce`s Blog
+       
+  </title>
+  <meta name="title" content="读书笔记 | PCA主成分分析原理 | Joyce`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/joyce-peng.github.io"
+    },
+    "articleSection" : "posts",
+    "name" : "读书笔记 | PCA主成分分析原理",
+    "headline" : "读书笔记 | PCA主成分分析原理",
+    "description" : "最近在看李航《统计学习方法第二版》PCA这章的内容，打算结合自己的理解， 把PCA的基本原理和实现方法做个归纳和提炼。如出现错误，欢迎交流。 基",
+    "inLanguage" : "zh-cn",
+    "author" : "Joyce",
+    "creator" : "Joyce",
+    "publisher": "Joyce",
+    "accountablePerson" : "Joyce",
+    "copyrightHolder" : "Joyce",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-29 23:39:43 \x2b0800 CST",
+    "dateModified" : "2020-04-29 23:39:43 \x2b0800 CST",
+    "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a005\/",
+    "wordCount" : "2510",
+    "keywords" : [ "机器学习", "Joyce`s Blog"]
+}
+</script>
+
+  <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+
+  
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+
+    <div class="container">
+		
+            <div class="navbar-header">
+                <a href="https://joyce-peng.github.io">
+                    <span class="header-logo" >> Back Home</span>
+                </a>
+            </div>
+        
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+				<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">读书笔记 | PCA主成分分析原理</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-29 itemprop="datePublished">April 29, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://joyce-peng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"> 机器学习 </a>
+                        
+                </span>
+				<span >, 共 <span class="keyword_Highlight">2510</span> 词</span>
+				<span >, 总阅读量 <span id="busuanzi_value_page_pv" class="keyword_Highlight"></span> 次</span>
+				
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>最近在看李航《统计学习方法第二版》PCA这章的内容，打算结合自己的理解，
+把PCA的基本原理和实现方法做个归纳和提炼。如出现错误，欢迎交流。</p>
+<h2 id="基本概念">基本概念</h2>
+<p>PCA（主成分分析）是一种常用的降维方法。在PCA处理中，首先会对给定数据进行规范化，
+使得数据每一变量的平均值为0，方差为1。之后对数据进行正交变换，原来由线性相关变量表示的数据，
+通过正交变换变成若干个线性无关的新变量表示的数据。
+新变量是可能的正交变换中变量的方差的和（信息保存）最大的。
+将新变量依次称为第一主成分、第二主成分…第 k 主成分等。</p>
+<p>举例：现在有组简单的二维数据（1，1）、（2，2）、（3，3），假设第一个变量为 X1，
+第二个变量为 X2，则在坐标轴中表示如下：</p>
+<img src="http://wwxlpy.cn/blog_image/posta005/posta005_1.jpg" width="100%">
+<p>我们将所有点按坐标轴做投影，那么投影后的数据在 X1 方向上的方差和在 X2 方向上的方差一样，
+即 X1_var = X2_var = 1，则数据的方差总和是2。
+现在我们的目标是用一个特征向量表示原始数据，即将二维数据降成一维数据，
+并且尽可能地保留信息量，即让数据总方差尽量保持为2。我们试着将原本地直角坐标系旋转45°，
+形成新的特征向量 $ X1^* $ 和 $ X2^* $ 。</p>
+<img src="http://wwxlpy.cn/blog_image/posta005/posta005_2.jpg" width="100%">
+<p>在这个新的坐标体系中重新计算坐标，可以看到 $ X1^* $ _var = 0，
+这表示 $ X1^* $ 不带任何有效信息， $ X2^* $ _var = 2，
+所以数据总方差仍为2， $ X2^* $ 为降维后的第一主成分。
+我们保留 $ X2^* $ ，去掉 $ X1^* $ ，这样就把二维的数据转换成一维的数据了。
+由上面的例子可以知道，PCA实际的操作是将数据进行一个有要求的线性变换，
+即 $ y_{i} = α_{i}^T X , \quad i = 1，2，…，k $ 。
+它要满足以下条件：</p>
+<h4 id="1线性变换是正交变换α1α2αm是其一组标准正交基即αt_i-α_j-begincases-1-ij-0-ine-j-endcases-">(1)线性变换是正交变换，α1，α2，…αm是其一组标准正交基，即$α^T_{i} α_{j} \begin{cases} 1, &amp;i=j\\ 0, &amp;i\ne j \end{cases}$ ;</h4>
+<h4 id="2变量yi与变量yj互不相关即协方差covyi-yj--0--ine-j-">(2)变量yi与变量yj互不相关，即协方差cov(yi, yj) = 0 ($ i\ne j $)；</h4>
+<h4 id="3方差vary1-vary2-varyk大小依次递减varyi表示了数据在yi方向上的分散程度方差越大数据越分散带有的信息量就越多">(3)方差var(y1), var(y2) ,…..,var(yk)大小依次递减，var(yi)表示了数据在yi方向上的分散程度，方差越大，数据越分散，带有的信息量就越多；</h4>
+<h4 id="4y总体的方差之和等于随机变量x的方差之和">(4)y总体的方差之和等于随机变量x的方差之和。</h4>
+<p>那么我们如何找到符合要求的正交变换？标准是，利用原随机变量的协方差矩阵来求解主成分，
+它计算的过程由以下定理给出：
+设x是m维随机变量，Σ是x的协方差矩阵，
+Σ的特征值分别是λ1&gt;=λ2&gt;=…&gt;=λm&gt;=0，特征值对应的单位特征向量分别是α1，α2, … ,αm，
+则x的第k主成分是 $ y_{k} = α_{k}^T X = α_{1k}X_{1} + α_{1k}X_{2} +&hellip;+ α_{mk}X_{m}， \quad k = 1，2，…，m $
+那么$y_{k}$的方差可以由Σ求出，$ var(yk) = var(α_{k}^T X) =λk $，
+这里的λk是Σ的第k个特征值并且αk就是对应的单位特征向量。</p>
+<p>由此可知，如果我们要找 X 的第一主成分，那么首先要求解 X 的协方差矩阵 Σ 中最大的特征值 λ1 ，
+找出了 λ1 ，其对应的第一主成分 y1 也就求出了，并且此时 y1 的方差最大。</p>
+<p>现在我们知道怎么求出第 k 个主成分了，但是这个k到底要怎么确定呢？
+如果只需要保留原来样本80%的信息， k 最少能取到多少？
+在PCA中，具体选择k的方法通常是累计方差贡献率，公式如下：
+$$
+\newcommand{\SES}[2]{ \displaystyle\sum_#2^#1}
+\SES{k}{{i=1}}\eta_i = \frac{\SES{k}{{i=1}}\lambda_i}{\SES{m}{{i=1}}\lambda_i}
+$$
+若要保留样本80%的信息，则取$ \eta_i $ = 0.8时k的取值。</p>
+<h2 id="pca在高维样本矩阵中的实现">PCA在高维样本矩阵中的实现</h2>
+<h3 id="21-相关矩阵的特征值分解算法">2.1 相关矩阵的特征值分解算法</h3>
+<p>假设对m维随机变量X=(x1, x2, … , xm)T进行n次独立观测，x1, x2, … , xn表示观测样本，
+其中xj=(x1j, x2j,…xmj)T表示第j个观测样本，
+$ x_{ij} $表示第 j 个观测样本的第i个变量，
+j =1, 2, … , n。观测数据用样本矩阵X表示，记作：
+$$<br>
+\ X = [x1 , x2 … xn] =
+\begin{bmatrix}
+x11 &amp; x12 &amp; \cdots &amp; x1n  \\<br>
+x21 &amp; x22 &amp; \cdots &amp; x2n  \\<br>
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\<br>
+xm1 &amp; xm2 &amp; \cdots &amp; xmn  \\<br>
+\end{bmatrix}
+$$</p>
+<p>一般假设样本数据是规范化的，即要对样本矩阵作如下变换：</p>
+<p>$
+x_{ij}^*= \frac{xij - \overline xi}{\sqrt  sii} , \quad i = 1, 2, &hellip; ,m; \quad j = 1, 2, &hellip; ,n
+$</p>
+<p>其中$\bar x_{i}$和sii如下:</p>
+<p>$
+\overline x_{i} = \frac{1}{n} \sum_{j=1}^n  x_{ij}, \quad i = 1,2, &hellip;, m
+$</p>
+<p>$
+s_{ii} = \frac{1}{n-1} \sum_{j=1}^n  (x_{ij} - \overline x_{i} )^2 , \quad i = 1,2, &hellip;, m
+$</p>
+<p>为了方便，以下将规范化变量xij*仍记作xij，规范化的样本矩阵仍记作X。
+这时，样本协方差矩阵S就是样本相关矩阵R，计算公式如下：</p>
+<p>$
+R = \frac{1}{n-1}XX^T
+$</p>
+<p>举例：假设有 n 个学生参加四门课程的考试，
+将学生们的考试成绩看作随机变量的取值，
+对考试成绩数据进行标准化处理，得到样本相关矩阵 R ，列于表1。</p>
+<p><img src="http://wwxlpy.cn/blog_image/posta005/posta005_3.jpg" width="100%" ></p>
+<p>解：设变量$ x1，x2，x3，x4 $分别表示语文、外语、数学、物理的成绩。对样本相关矩阵进行特征值分解，
+即求解 $ |R-λI| = 0 $，得到相关矩阵的特征值，并按大小排序，如下：
+$ λ1=2.17，λ2=0.87，λ3=0.57，λ4=0.39 $ 。</p>
+<p>这些特征值就是各主成分的方差贡献率。
+假设要求主成分的累计方差贡献率大于75%，
+那么只需要取前两个主成分即可，即 $ k=2 $，因为：</p>
+<p>$
+\frac{λ1 + λ2}{\sum_{i=1}^4 \quad λi} = 0.76
+$</p>
+<p>求出对应于特征值$λ1，λ2$的单位特征向量，列于表2，表中最后一列为主成分的方差贡献率。</p>
+<img src="http://wwxlpy.cn/blog_image/posta005/posta005_4.jpg" width="100%">
+<p>以k个单位特征向量为系数进行线性变换，求出k个样本主成分的公式是 $ y_{i} = α_{i}^T X，i = 1，2，…，k$</p>
+<p>由上式可得第一、第二主成分：</p>
+<p>$
+y1=0.460x1 + 0.476x2 + 0.523x3 + 0.537x4
+$</p>
+<p>$
+y2=0.574x1 + 0.486x2 - 0.476x3 - 0.456x4
+$</p>
+<p>将规范化样本数据代入 k 个主成分式，得到 n 个样本的主成分值。
+第j个样本$xj = (x1j, x2j, x3j, x4j)（j = 1, 2, … , n）$的第一主成分是：</p>
+<p>$y_{1j} = 0.460x_{1j} + 0.476x_{2j} + 0.523x_{3j} + 0.537x_{4j}$</p>
+<p>第二主成分是：</p>
+<p>$ y_{2j} = 0.574x_{1j} + 0.486x_{2j} - 0.476x_{3j} - 0.456x_{4j} $</p>
+<p>如果$ j = (1, 2, 3, 4) $ , 则经过pca处理后的$j^* = (5.129, 4.798)$</p>
+<h3 id="22-数据矩阵的奇异值分解算法svd">2.2 数据矩阵的奇异值分解算法(SVD)</h3>
+<p>这个算法目前更为常用，因为上一个算法是基于样本协方差矩阵的，
+面对高维样本，其耗费的计算量非常大，而用SVD求解主成分矩阵计算量相对较小。
+书上用了整整一章来推导奇异值分解的数学公式，感兴趣的话自己去看看吧。这里直接列下算法流程：</p>
+<p>输入： m×n 样本矩阵X，其每一行元素的均值为零</p>
+<p>输出： k×n 样本主成分矩阵Y</p>
+<p>(1)构造新的n×m矩阵$X^* = \frac{1}{\sqrt{n-1}}X^T，X^*$每一列的均值为 0 ;</p>
+<p>(2)对矩阵
+$
+X^*
+$
+进行截断奇异值分解
+$
+X^* = =UΣV^T
+$，
+得到有 k 个奇异值、奇异向量。矩阵 V的前 k列构成 k个样本主成分;</p>
+<p>(3)求主成分矩阵Y，$Y=V^TX$。</p>
+<br>
+<center>-End-</center>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Joyce </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://joyce-peng.github.io/2020/post_a005/>https://joyce-peng.github.io/2020/post_a005/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://joyce-peng.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                    #机器学习</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://joyce-peng.github.io">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://joyce-peng.github.io/2020/post_a004/" class="prev" rel="prev" title="图像检索中的空间池化操作——R-MAC、GeM"><i class="iconfont icon-left"></i>&nbsp;图像检索中的空间池化操作——R-MAC、GeM</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+		
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: '8044ce96362b7714a187',
+    clientSecret: '3b4821face6c84392e45079078ac01ed6a255587',
+    repo: 'joyce-peng.github.io',
+    owner: 'joyce-peng',
+    admin: ['joyce-peng'],
+    id: location.pathname, 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+
+    <div class="copyright">
+		
+		<span id="busuanzi_container_site_pv" style="display:inline";>
+		本站总访问量 <span id="busuanzi_value_site_pv" class = "keyword_Highlight"></span> 次
+		</span>
+		&nbsp;
+		<span id="busuanzi_container_site_uv" style="display:inline;">
+		您是本站第 <span id="busuanzi_value_site_uv" class = "keyword_Highlight"></span> 位访问者
+		</span>
+		<br>
+        &copy;
+        
+        <span itemprop="copyrightYear">2019 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://joyce-peng.github.io">Joyce</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+
+	</div>
+	
+	
+		
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

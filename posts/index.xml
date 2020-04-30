@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 Apr 2020 21:31:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2020 23:39:43 +0800</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>读书笔记 | PCA主成分分析原理</title>
+      <link>https://joyce-peng.github.io/2020/post_a005/</link>
+      <pubDate>Wed, 29 Apr 2020 23:39:43 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a005/</guid>
+      <description>最近在看李航《统计学习方法第二版》PCA这章的内容，打算结合自己的理解， 把PCA的基本原理和实现方法做个归纳和提炼。如出现错误，欢迎交流。 基</description>
+    </item>
     
     <item>
       <title>图像检索中的空间池化操作——R-MAC、GeM</title>

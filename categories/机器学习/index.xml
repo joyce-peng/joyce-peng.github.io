@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>机器学习 on Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 机器学习 on Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 29 Apr 2020 23:39:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>读书笔记 | PCA主成分分析原理</title>
+      <link>https://joyce-peng.github.io/2020/post_a005/</link>
+      <pubDate>Wed, 29 Apr 2020 23:39:43 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a005/</guid>
+      <description>最近在看李航《统计学习方法第二版》PCA这章的内容，打算结合自己的理解， 把PCA的基本原理和实现方法做个归纳和提炼。如出现错误，欢迎交流。 基</description>
+    </item>
+    
+  </channel>
+</rss>

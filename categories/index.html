@@ -39,6 +39,41 @@
   
  
 
+  <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
 </head>
 
   
@@ -46,6 +81,7 @@
 
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
   <body class="">
     <div class="wrapper">
         <nav class="navbar">
@@ -165,6 +201,22 @@
     
          <div class="card-item">
            <div class="categories" >
+             <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><h3> <i class="iconfont icon-folder" style="padding-right: 3px"></i> 机器学习  </h3> </a>
+                  
+                <article class="archive-item">
+                <a href="/2020/post_a005/" class="archive-item-link">读书笔记 | PCA主成分分析原理</a>
+                </article>
+              
+               
+           </div>
+        </div>
+    
+
+    
+    
+    
+         <div class="card-item">
+           <div class="categories" >
              <a href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"><h3> <i class="iconfont icon-folder" style="padding-right: 3px"></i> 目标检测  </h3> </a>
                   
                 <article class="archive-item">
@@ -186,7 +238,7 @@
       <footer class="footer">
 
     <div class="copyright">
-	
+		
 		<span id="busuanzi_container_site_pv" style="display:inline";>
 		本站总访问量 <span id="busuanzi_value_site_pv" class = "keyword_Highlight"></span> 次
 		</span>
@@ -208,8 +260,11 @@
 
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
-		
+
 	</div>
+	
+	
+		
 </footer>
 
 
