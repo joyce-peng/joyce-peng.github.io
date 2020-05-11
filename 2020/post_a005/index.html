@@ -10,7 +10,7 @@
   
   
   <link rel="prev" href="https://joyce-peng.github.io/2020/post_a004/" />
-  
+  <link rel="next" href="https://joyce-peng.github.io/2020/post_a006/" />
   <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a005/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/headers/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/headers/favicon.png">
@@ -57,7 +57,7 @@
     "datePublished": "2020-04-29 23:39:43 \x2b0800 CST",
     "dateModified" : "2020-04-29 23:39:43 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a005\/",
-    "wordCount" : "2509",
+    "wordCount" : "2527",
     "keywords" : [ "机器学习", "Joyce`s Blog"]
 }
 </script>
@@ -105,6 +105,8 @@ code.has-jax {
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
   <body class="">
     <div class="wrapper">
         <nav class="navbar">
@@ -113,20 +115,20 @@ code.has-jax {
 		
             <div class="navbar-header">
                 <a href="https://joyce-peng.github.io">
-                    <span class="header-logo" >> Back Home</span>
+                    <span class="header-logo" >> 返回首页</span>
                 </a>
             </div>
         
         <div class="menu navbar-right">
                 
                 
-                <a class="menu-item" href="/posts/" title="">Post</a>
+                <a class="menu-item" href="/posts/" title="">文章</a>
                 
-                <a class="menu-item" href="/categories/" title="">Categories</a>
+                <a class="menu-item" href="/categories/" title="">分类</a>
                 
-                <a class="menu-item" href="/tags/" title="">Tags</a>
+                <a class="menu-item" href="/tags/" title="">标签</a>
                 
-                <a class="menu-item" href="/about/" title="">About</a>
+                <a class="menu-item" href="/about/" title="">关于</a>
                 
 				<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
         </div>
@@ -145,13 +147,13 @@ code.has-jax {
           <div class="menu" id="mobile-menu">
                 
                 
-                <a class="menu-item" href="/posts/" title="">Post</a>
+                <a class="menu-item" href="/posts/" title="">文章</a>
                 
-                <a class="menu-item" href="/categories/" title="">Categories</a>
+                <a class="menu-item" href="/categories/" title="">分类</a>
                 
-                <a class="menu-item" href="/tags/" title="">Tags</a>
+                <a class="menu-item" href="/tags/" title="">标签</a>
                 
-                <a class="menu-item" href="/about/" title="">About</a>
+                <a class="menu-item" href="/about/" title="">关于</a>
                 
         </div>
     </div>
@@ -161,6 +163,11 @@ code.has-jax {
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
+	
+    <link rel="stylesheet" href="/css/share.css">
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/qrcode.js"></script>
+	
         <h1 class="post-title" itemprop="name headline">读书笔记 | PCA主成分分析原理</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
@@ -173,12 +180,13 @@ code.has-jax {
                         <a href="https://joyce-peng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"> 机器学习 </a>
                         
                 </span>
-				<span >, 共 <span class="keyword_Highlight">2509</span> 词</span>
+				<span >, 共 <span class="keyword_Highlight">2527</span> 词</span>
 				<span >, 总阅读量 <span id="busuanzi_value_page_pv" class="keyword_Highlight"></span> 次</span>
 				
         </div>
     </header>
-    <div class="post-content">
+    <div>
+	<div class="post-content">
         
 
         
@@ -211,7 +219,7 @@ code.has-jax {
 即 X1_var = X2_var = 1，则数据的方差总和是2。
 现在我们的目标是用一个特征向量表示原始数据，即将二维数据降成一维数据，
 且尽可能地保留信息量，即让数据总方差尽量保持为2。我们试着将原本地直角坐标系旋转45°，
-形成新的特征向量 $ X1^* $ 和 $ X2^* $ 。</p>
+形成新的特征向量 $ X1^* $ 和 $ X2^* $。</p>
 <img src="http://wwxlpy.cn/blog_image/posta005/posta005_2.jpg" width="100%">
 <p>在这个新的坐标体系中重新计算坐标，可以看到 $ X1^* $ _var = 0，
 这表示 $ X1^* $ 不带任何有效信息， $ X2^* $ _var = 2，
@@ -226,9 +234,9 @@ code.has-jax {
 <h4 id="4y总体的方差之和等于随机变量x的方差之和">(4)y总体的方差之和等于随机变量x的方差之和。</h4>
 <p>那么我们如何找到符合要求的正交变换？标准是，利用原随机变量的协方差矩阵来求解主成分，
 它计算的过程由以下定理给出：
-设x是m维随机变量，Σ是x的协方差矩阵，
+设X是m维随机变量，Σ是X的协方差矩阵，
 Σ的特征值分别是λ1&gt;=λ2&gt;=…&gt;=λm&gt;=0，特征值对应的单位特征向量分别是α1，α2, … ,αm，
-则x的第k主成分是 $ y_{k} = α_{k}^T X = α_{1k}X_{1} + α_{1k}X_{2} +&hellip;+ α_{mk}X_{m}， \quad k = 1，2，…，m $
+则x的第k主成分是 $ y_{k} = α_{k}^T X = α_{1k}X_{1} + α_{1k}X_{2} +&hellip;+ α_{mk}X_{m}， \quad k = 1，2，…，m $ 。
 那么$y_{k}$的方差可以由Σ求出，$ var(yk) = var(α_{k}^T X) =λk $，
 这里的 λk 是 Σ 的第k个特征值并且 αk 就是对应的单位特征向量。</p>
 <p>由此可知，如果我们要找 X 的第一主成分，那么首先要求解 X 的协方差矩阵 Σ 中最大的特征值 λ1 ，
@@ -243,8 +251,8 @@ $$
 若要保留样本80%的信息，则取$ \eta_i $ = 0.8时k的取值。</p>
 <h2 id="pca在高维样本矩阵中的实现">PCA在高维样本矩阵中的实现</h2>
 <h3 id="21-相关矩阵的特征值分解算法">2.1 相关矩阵的特征值分解算法</h3>
-<p>假设对m维随机变量X=(x1, x2, … , xm)T进行n次独立观测，x1, x2, … , xn表示观测样本，
-其中xj=(x1j, x2j,…xmj)T表示第j个观测样本，
+<p>假设对m维随机变量$X=(x1, x2, … , xm)^T$进行n次独立观测，x1, x2, … , xn表示观测样本，
+其中$x_{j}=(x_{1j}, x_{2j},…x_{mj})^T$表示第j个观测样本，
 $ x_{ij} $表示第 j 个观测样本的第i个变量，
 j =1, 2, … , n。观测数据用样本矩阵X表示，记作：
 $$<br>
@@ -318,24 +326,34 @@ X^* = =UΣV^T
 $，
 得到有 k 个奇异值、奇异向量。矩阵 V的前 k列构成 k个样本主成分;</p>
 <p>(3)求主成分矩阵Y，$Y=V^TX$。</p>
-<br>
-<center>-End-</center>
+
+
+	</div>
+		  <br>
+		  <center>——本文结束——</center>
+		  <center>转载、引用、修改、演绎本文都请注明出处</center>
+		  
+		  <center><div class="social-share" data-sites="wechat,weibo, qq, qzone"></div>
+
+
+</center>
     </div>
 
     <div class="post-copyright">
              
             <p class="copyright-item">
-                <span>Author:</span>
+                <span>作者:</span>
                 <span>Joyce </span>
                 </p>
             
            
              
             <p class="copyright-item">
-                    <span>Link:</span>
+                    <span>本文链接:</span>
                     <a href=https://joyce-peng.github.io/2020/post_a005/>https://joyce-peng.github.io/2020/post_a005/</span>
             </p>
             
+			
              
             <p class="copyright-item lincese">
                 本文采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可
@@ -347,7 +365,7 @@ $，
     <div class="post-tags">
         
             <section>
-            <i class="iconfont icon-tag"></i>Tag(s): 
+            <i class="iconfont icon-tag"></i>标签: 
             
             <span class="tag"><a href="https://joyce-peng.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
                     #机器学习</a></span>
@@ -355,8 +373,8 @@ $，
             </section>
         
         <section>
-                <a href="javascript:window.history.back();">back</a></span> · 
-                <span><a href="https://joyce-peng.github.io">home</a></span>
+                <a href="javascript:window.history.back();">返回</a></span> · 
+                <span><a href="https://joyce-peng.github.io">首页</a></span>
         </section>
     </div>
 
@@ -364,6 +382,8 @@ $，
         
         <a href="https://joyce-peng.github.io/2020/post_a004/" class="prev" rel="prev" title="图像检索中的空间池化操作——R-MAC、GeM"><i class="iconfont icon-left"></i>&nbsp;图像检索中的空间池化操作——R-MAC、GeM</a>
          
+        
+        <a href="https://joyce-peng.github.io/2020/post_a006/" class="next" rel="next" title="NLP入门系列说明&#43;汇总">NLP入门系列说明&#43;汇总&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -429,6 +449,8 @@ $，
 	
 		
 </footer>
+
+
 
 
 

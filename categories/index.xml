@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 29 Apr 2020 23:39:43 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2020 14:54:33 +0800</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NLP入门</title>
+      <link>https://joyce-peng.github.io/categories/nlp%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sun, 10 May 2020 14:54:33 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/categories/nlp%E5%85%A5%E9%97%A8/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>机器学习</title>
@@ -44,15 +53,6 @@
       <pubDate>Sun, 16 Feb 2020 01:04:01 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/categories/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>博客优化</title>
-      <link>https://joyce-peng.github.io/categories/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://joyce-peng.github.io/categories/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</guid>
       <description></description>
     </item>
     

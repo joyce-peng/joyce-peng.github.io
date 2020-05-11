@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NLP入门 on Joyce`s Blog</title>
+    <link>https://joyce-peng.github.io/tags/nlp%E5%85%A5%E9%97%A8/</link>
+    <description>Recent content in NLP入门 on Joyce`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 May 2020 14:54:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://joyce-peng.github.io/tags/nlp%E5%85%A5%E9%97%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NLP入门系列(一) | 词表示</title>
+      <link>https://joyce-peng.github.io/2020/post_a007/</link>
+      <pubDate>Sun, 10 May 2020 14:54:33 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a007/</guid>
+      <description>词表示的基本概念 现实世界中的语言是通过抽象的符号显示在载体上的。在我的理解中，所谓自然语言处理（Natural Language Processing，NLP</description>
+    </item>
+    
+    <item>
+      <title>NLP入门系列说明&#43;汇总</title>
+      <link>https://joyce-peng.github.io/2020/post_a006/</link>
+      <pubDate>Sun, 10 May 2020 01:45:14 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a006/</guid>
+      <description>写这个系列是想以小白的角度，有框架地把NLP的相关基础表达出来。 网上很多技术博客对新手不太不友好，所以我就想把自己入门遇到的知识点都整理在这</description>
+    </item>
+    
+  </channel>
+</rss>

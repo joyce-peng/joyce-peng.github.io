@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Joyce">
+  
+  
+  
+  <link rel="prev" href="https://joyce-peng.github.io/2020/post_a006/" />
+  
+  <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a007/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/headers/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/headers/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/headers/favicon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           NLP入门系列(一) | 词表示 | Joyce`s Blog
+       
+  </title>
+  <meta name="title" content="NLP入门系列(一) | 词表示 | Joyce`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/joyce-peng.github.io"
+    },
+    "articleSection" : "posts",
+    "name" : "NLP入门系列(一) | 词表示",
+    "headline" : "NLP入门系列(一) | 词表示",
+    "description" : "词表示的基本概念 现实世界中的语言是通过抽象的符号显示在载体上的。在我的理解中，所谓自然语言处理（Natural Language Processing，NLP",
+    "inLanguage" : "zh-cn",
+    "author" : "Joyce",
+    "creator" : "Joyce",
+    "publisher": "Joyce",
+    "accountablePerson" : "Joyce",
+    "copyrightHolder" : "Joyce",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-10 14:54:33 \x2b0800 CST",
+    "dateModified" : "2020-05-10 14:54:33 \x2b0800 CST",
+    "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a007\/",
+    "wordCount" : "2744",
+    "keywords" : [ "NLP入门", "Joyce`s Blog"]
+}
+</script>
+
+  <script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+
+  
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+
+    <div class="container">
+		
+            <div class="navbar-header">
+                <a href="https://joyce-peng.github.io">
+                    <span class="header-logo" >> 返回首页</span>
+                </a>
+            </div>
+        
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">文章</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+				<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://joyce-peng.github.io">Joyce`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">文章</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+	
+    <link rel="stylesheet" href="/css/share.css">
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/qrcode.js"></script>
+	
+        <h1 class="post-title" itemprop="name headline">NLP入门系列(一) | 词表示</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-05-10 itemprop="datePublished">May 10, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://joyce-peng.github.io/categories/nlp%E5%85%A5%E9%97%A8/"> NLP入门 </a>
+                        
+                </span>
+				<span >, 共 <span class="keyword_Highlight">2744</span> 词</span>
+				<span >, 总阅读量 <span id="busuanzi_value_page_pv" class="keyword_Highlight"></span> 次</span>
+				
+        </div>
+    </header>
+    <div>
+	<div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h2 id="词表示的基本概念">词表示的基本概念</h2>
+<p>现实世界中的语言是通过抽象的符号显示在载体上的。在我的理解中，所谓自然语言处理（Natural Language Processing，NLP），
+就是将符号化的语言用数值的形式表示出来并进行相应的计算，从而得到某种规律的过程。
+在NLP任务中，对语言的处理最终都要转化为对词的处理，所以词的表示既是任务的基础也是任务的核心。</p>
+<p>目前词表示方法主要分为局部表示（local representation）和分布式表示（distributed representation）。
+局部表示中具体的方法为独热表示，分布式表示中的具体方法又分为了三类，
+分别是基于矩阵的分布表示、基于聚类的分布表示和基于神经网络的分布表示。</p>
+<h2 id="词的独热表示one-hot-representation">词的独热表示（One-hot Representation）</h2>
+<p>一开始人们对于词表示想到最简单方法是——词的独热表示（One-hot Representation），这种方法把每个词表示成一个很长的向量。
+这个向量的维度是词表的大小，绝大部分维度上的数值为0，只有一个维度的数值为1。下面举个简单的例子。
+假设我们词表内有3个词，分别是学校、老师、学生。那么它们的One-hot表示分别为：</p>
+<p>“学校”表示为[1 0 0]</p>
+<p>“老师”表示为[0 1 0]</p>
+<p>“学生”表示为[0 0 1]</p>
+<p>这种词的独热表示如果采用稀疏方式存储，会是非常的简洁，也就是给每个词分配一个数字ID。
+比如刚才的例子中，老师记为1，学生记为2（假设从0开始记）。如果要编程实现的话，用Hash表给每个词分配一个编号就可以了。
+这么简洁的表示方法配合上最大熵、SVM等等算法已经很好地完成了NLP领域的各种主流任务。但是该方法也存在一定的缺陷：</p>
+<p>①实际任务中的词表肯定是远超过3个词的，那么单词向量的维度就会随着词表的增大而增大。
+如果词表内单词数量非常庞大，那么向量的维度就会变得非常高，难以计算。</p>
+<p>②单词向量之间的内积为0，即任意两个词之间都是孤立的，这无法表示出语义层面上词与词之间的相关信息，
+而我们日常中的词都是有一定的联系的，如girl和boy。</p>
+<h2 id="词的分布式表示distributed-representation">词的分布式表示（Distributed Representation）</h2>
+<p>为了弥补One-hot的缺陷，人们又提出了词的分布式表示（Distributed Representation）。
+它的提出基于Harris在1954年提出的分布假说（Distributional Hypothesis）：
+上下文相似的词，其语义也相似。Firth在1957年对分布假说进行了进一步阐述和明确：
+词的语义由其上下文决定。到目前为止，基于分布假说的词表示方法，根据建模的不同，
+主要可以分为三类：基于矩阵的分布表示、基于聚类的分布表示和基于神经网络的分布表示。
+它们所对应的具体方法和区别如下：
+<img src="http://wwxlpy.cn/blog_image/posta007/posta007_2.jpg" width="60%">
+尽管这些不同的分布表示方法使用了不同的技术手段获取词表示，
+但由于这些方法均基于分布假说，它们的核心思想也都由两部分组成：</p>
+<p>①选择一种方式描述上下文；</p>
+<p>②选择一种模型刻画目标词与其上下文之间的关系。上文介绍的矩阵、聚类和神经网络三种方法，
+采用了不同的方式对上下文和目标词之间的关系进行建模。</p>
+<p>下面将简要介绍这三类模型。</p>
+<h3 id="基于矩阵的分布表示">基于矩阵的分布表示</h3>
+<p>基于矩阵的分布表示通常又称为分布语义模型（Distributional Semantic Models），
+一些文献中也直接将其称作分布表示（Distributional Representation）。
+这类方法需要构建一个“词-上下文”矩阵，从矩阵中获取词的表示。在“词-上下文”矩阵中，
+每行对应一个词，每列表示一种不同的上下文，矩阵中的每个元素对应相关词和上下文的共现次数, 如图：
+<img src="http://wwxlpy.cn/blog_image/posta007/posta007_1.jpg" width="45%">
+在这种表示下，矩阵中的一行，就成为了对应词的表示，这种表示描述了该词的上下文的分布。
+由于分布假说认为上下文相似的词，其语义也相似，
+因此在这种表示下，两个词的语义相似度可以直接转化为两个向量的空间距离。</p>
+<p>基于矩阵的分布表示具体可以分为三个步骤：</p>
+<p>①选取上下文。最常见的有三种方法：
+第一种，将词所在的文档作为上下文，形成“词-文档”矩阵；
+第二种，将词附近上下文中的各个词（如上下文窗口中的5个词）作为上下文，形成“词-词”矩阵；
+第三种，将词附近上下文各词组成的n元词组（n-gram）作为上下文。</p>
+<p>在这三种方法中，“词-文档”矩阵非常稀疏，而“词-词”矩阵相对较为稠密，效果一般好于前者。
+“词-n元词组”相对“词-词”矩阵保留了词序信息，
+建模更精确，但由于比前者更稀疏，实际效果不一定能超越前者。</p>
+<p>②确定矩阵中各元素的值。“词-上下文”共现矩阵根据其定义，
+里面各元素的值应为词与对应的上下文的共现次数。
+然而直接使用原始共现次数作为矩阵的值在大多数情况下效果并不好，
+因此研究人员提出了多种加权和平滑方法，最常用的有tf-idf、PMI和直接取log。</p>
+<p>③矩阵分解（可选）。在原始的“词-上下文”矩阵中，
+每个词表示为一个非常高维（维度是不同上下文的总个数）且非常稀疏的向量，
+使用降维技术可以将这一高维稀疏向量压缩成低维稠密向量。降维技术可以减少噪声带来的影响，
+但也可能损失一部分信息。最常用的分解技术包括奇异值分解（SVD）、非负矩阵分解（NMF）、
+典型关联分析（Canonical Correlation Analysis，CCA）、HellingerPCA（HPCA）。
+基于矩阵的分布表示在这些步骤的基础上，衍生出了若干不同方法，
+如经典的LSA就是使用“词-文档”矩阵，tf-idf作为矩阵元素的值，并使用SVD分解，
+得到词的低维向量表示。</p>
+<h3 id="基于聚类的分布表示">基于聚类的分布表示</h3>
+<p>基于聚类的分布表示又称作分布聚类（Distributional Clustering），
+这类 方法通过聚类手段构建词与其上下文之间的关系。
+其中最经典的方法是布朗聚类（Brown Clustering）。
+布朗聚类是一种层级聚类方法，聚类结果为每个词的多层类别体系。
+因此可以根据两个词的公共类别判断这两个词的语义相似度。</p>
+<h3 id="基于神经网络的分布表示">基于神经网络的分布表示</h3>
+<p>基于神经网络的分布表示一般称为词向量、词嵌入（Word Embedding）
+或分布式表示（Distributed Representation）[116]。神经网络词向量表示技术通过神经网络技术对上下文，
+以及上下文与目标词之间的关系进行建模。由于神经网络 较为灵活，
+这类方法的最大优势在于可以表示复杂的上下文。在前面基于矩阵的分布表示方法中，
+最常用的上下文是词。如果使用包含词序信息的 n-gram作为上下文，
+当 n 增加时，n-gram的总数会呈指数级增长，此时会遇到维数灾难 问题。
+而神经网络在表示 n-gram 时，可以通过一些组合方式对 n 个词进行组合，
+参数个数仅以线性速度增长。有了这一优势，神经网络模型可以对更复杂的上下文进行建模，
+在词向量中包含更丰富的语义信息。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>[1]基于神经网络的词和文档语义向量表示方法研究 . 来斯惟
+<a href="https://licstar.net/archives/687#comment-1795">https://licstar.net/archives/687#comment-1795</a></p>
+
+
+	</div>
+		  <br>
+		  <center>——本文结束——</center>
+		  <center>转载、引用、修改、演绎本文都请注明出处</center>
+		  
+		  <center><div class="social-share" data-sites="wechat,weibo, qq, qzone"></div>
+
+
+</center>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>作者:</span>
+                <span>Joyce </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>本文链接:</span>
+                    <a href=https://joyce-peng.github.io/2020/post_a007/>https://joyce-peng.github.io/2020/post_a007/</span>
+            </p>
+            
+			
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>标签: 
+            
+            <span class="tag"><a href="https://joyce-peng.github.io/tags/nlp%E5%85%A5%E9%97%A8/">
+                    #NLP入门</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">返回</a></span> · 
+                <span><a href="https://joyce-peng.github.io">首页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://joyce-peng.github.io/2020/post_a006/" class="prev" rel="prev" title="NLP入门系列说明&#43;汇总"><i class="iconfont icon-left"></i>&nbsp;NLP入门系列说明&#43;汇总</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+		
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: '8044ce96362b7714a187',
+    clientSecret: '3b4821face6c84392e45079078ac01ed6a255587',
+    repo: 'joyce-peng.github.io',
+    owner: 'joyce-peng',
+    admin: ['joyce-peng'],
+    id: location.pathname, 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+
+    <div class="copyright">
+		
+		<span id="busuanzi_container_site_pv" style="display:inline";>
+		本站总访问量 <span id="busuanzi_value_site_pv" class = "keyword_Highlight"></span> 次
+		</span>
+		&nbsp;
+		<span id="busuanzi_container_site_uv" style="display:inline;">
+		您是本站第 <span id="busuanzi_value_site_uv" class = "keyword_Highlight"></span> 位访问者
+		</span>
+		<br>
+        &copy;
+        
+        <span itemprop="copyrightYear">2019 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://joyce-peng.github.io">Joyce</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+
+	</div>
+	
+	
+		
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
