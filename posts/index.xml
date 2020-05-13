@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 May 2020 18:16:47 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2020 23:41:37 +0800</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NLP入门系列(三) | CBOW 模型、Skip-gram 模型</title>
+      <link>https://joyce-peng.github.io/2020/post_a009/</link>
+      <pubDate>Wed, 13 May 2020 23:41:37 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a009/</guid>
+      <description>CBOW模型</description>
+    </item>
     
     <item>
       <title>NLP入门系列(二) | 统计语言模型</title>
