@@ -6,10 +6,19 @@
     <description>Recent content in NLP入门 on Joyce`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 10 May 2020 14:54:33 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 18:16:47 +0800</lastBuildDate>
     
 	<atom:link href="https://joyce-peng.github.io/tags/nlp%E5%85%A5%E9%97%A8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NLP入门系列(二) | 统计语言模型</title>
+      <link>https://joyce-peng.github.io/2020/post_a008/</link>
+      <pubDate>Tue, 12 May 2020 18:16:47 +0800</pubDate>
+      
+      <guid>https://joyce-peng.github.io/2020/post_a008/</guid>
+      <description>关于统计语言模型，我觉得《数学之美》这本书讲的比较通俗易懂，同时也不失深度， 所以我会结合书上的内容和自己的理解来介绍它。 用数学的方法描述语言</description>
+    </item>
     
     <item>
       <title>NLP入门系列(一) | 词表示</title>

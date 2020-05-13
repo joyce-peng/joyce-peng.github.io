@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="https://joyce-peng.github.io/2020/post_a005/" />
-  <link rel="next" href="https://joyce-peng.github.io/2020/post_a007/" />
-  <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a006/" />
+  <link rel="prev" href="https://joyce-peng.github.io/2020/post_a007/" />
+  
+  <link rel="canonical" href="https://joyce-peng.github.io/2020/post_a008/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/images/headers/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/headers/favicon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/headers/favicon.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           NLP入门系列说明&#43;汇总 | Joyce`s Blog
+           NLP入门系列(二) | 统计语言模型 | Joyce`s Blog
        
   </title>
-  <meta name="title" content="NLP入门系列说明&#43;汇总 | Joyce`s Blog">
+  <meta name="title" content="NLP入门系列(二) | 统计语言模型 | Joyce`s Blog">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "https:\/\/joyce-peng.github.io"
     },
     "articleSection" : "posts",
-    "name" : "NLP入门系列说明\x2b汇总",
-    "headline" : "NLP入门系列说明\x2b汇总",
-    "description" : "写这个系列是想以小白的角度，有框架地把NLP的相关基础表达出来。 网上很多技术博客对新手不太不友好，所以我就想把自己入门遇到的知识点都整理在这",
+    "name" : "NLP入门系列(二) | 统计语言模型",
+    "headline" : "NLP入门系列(二) | 统计语言模型",
+    "description" : "关于统计语言模型，我觉得《数学之美》这本书讲的比较通俗易懂，同时也不失深度， 所以我会结合书上的内容和自己的理解来介绍它。 用数学的方法描述语言",
     "inLanguage" : "zh-cn",
     "author" : "Joyce",
     "creator" : "Joyce",
@@ -54,10 +54,10 @@
     "accountablePerson" : "Joyce",
     "copyrightHolder" : "Joyce",
     "copyrightYear" : "2020",
-    "datePublished": "2020-05-10 01:45:14 \x2b0800 CST",
-    "dateModified" : "2020-05-10 01:45:14 \x2b0800 CST",
-    "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a006\/",
-    "wordCount" : "244",
+    "datePublished": "2020-05-12 18:16:47 \x2b0800 CST",
+    "dateModified" : "2020-05-12 18:16:47 \x2b0800 CST",
+    "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a008\/",
+    "wordCount" : "2296",
     "keywords" : [ "NLP入门", "Joyce`s Blog"]
 }
 </script>
@@ -168,11 +168,11 @@ code.has-jax {
     <script src="/js/social-share.min.js"></script>
     <script src="/js/qrcode.js"></script>
 	
-        <h1 class="post-title" itemprop="name headline">NLP入门系列说明&#43;汇总</h1>
+        <h1 class="post-title" itemprop="name headline">NLP入门系列(二) | 统计语言模型</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-05-10 itemprop="datePublished">May 10, 2020</time>
+                on <time datetime=2020-05-12 itemprop="datePublished">May 12, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
@@ -180,7 +180,7 @@ code.has-jax {
                         <a href="https://joyce-peng.github.io/categories/nlp%E5%85%A5%E9%97%A8/"> NLP入门 </a>
                         
                 </span>
-				<span >, 共 <span class="keyword_Highlight">244</span> 词</span>
+				<span >, 共 <span class="keyword_Highlight">2296</span> 词</span>
 				<span >, 总阅读量 <span id="busuanzi_value_page_pv" class="keyword_Highlight"></span> 次</span>
 				
         </div>
@@ -189,6 +189,8 @@ code.has-jax {
 	<div class="post-content">
         
 
+        
+            
         
 
         
@@ -202,13 +204,84 @@ code.has-jax {
           
           
 
-          <p>写这个系列是想以小白的角度，有框架地把NLP的相关基础表达出来。
-网上很多技术博客对新手不太不友好，所以我就想把自己入门遇到的知识点都整理在这个系列，
-尽量用通俗易懂的语言，详细的背景介绍以及合理的编排去表达内容。
-当然，最好的入门方法还是要去看NLP领域优秀论文的原文，
-所以每篇文章后面我会列出我觉得不错的参考论文，方便大家去细读。
-另外，因为我也是刚刚接触这个领域的小白，所以也可能有写错的地方，欢迎各位批评指教。</p>
-<h3 id="传送列表">传送列表</h3>
+          <p>关于统计语言模型，我觉得《数学之美》这本书讲的比较通俗易懂，同时也不失深度，
+所以我会结合书上的内容和自己的理解来介绍它。</p>
+<h2 id="用数学的方法描述语言规律">用数学的方法描述语言规律</h2>
+<p>一个句子，如果我们要判断他是否有意义（这里的意义是指我们人类能不能看懂这个句子），
+我们该如何判断呢？
+比如：“小明今天上学了”和“今上天学了明小”，
+我们可能会从语法、词语等方面去判断，
+第二个句子语法不正确，有很多没含义的词语等等。
+但世界著名的语音识别和自然语言处理专家弗莱德里克·贾里尼克教授
+提出了一个更有效的方法：</p>
+<p>假定S表示某一个句子序列，由一连串特定顺序排列的词w1,w2,…,wn组成，
+这里n是句子的长度。现在，我们想知道S在文本中出现的可能性，也就是数学上所说的S的概率P(S)。
+出现的概率高的话，就表明这个句子是有意义的，但是我们要怎么计算这个P(S)呢？
+当然可以把人类有史以来讲过的话都统计一下，就知道这句话出现的概率了。可这是不可能做到的。
+因此，需要有个模型来估算它。既然S=w1,w2,…,wn, 那不妨把P(S)展开表示：</p>
+<p><code>$P(S)=P(w_{1},w_{2},…,w_{n}) \quad (1)$</code></p>
+<p>利用条件概率的公式，S这个序列出现的概率等于每一个词出现的条件概率相乘，于是P(w1,w2,…,wn)
+可展开为：</p>
+<p><code>$P(w_{1},w_{2},…,w_{n}) = P(w_{1}) \cdot P(w_{2}|w_{1}) \cdot P(w_{3}|w_{1},w_{2})&hellip;.P(w_{n}|w_{1},w_{2},&hellip;,w_{n-1}) \quad (2) $</code></p>
+<p>其中$P(w_{1})$表示第一个词$w_{1}$出现的概率；$P(w_{2}|w_{1})$是在已知第一个词的前提下，第二个词出现的概率；
+依次类推。不难看出，到了词$P(w_{n})$它的出现概率取决于它前面的所有词。</p>
+<p>从计算上来看，第一个词的条件概率$P(w_{1})$很容易算，第二个词的条件概率$P(w_{2}|w_{1})$也还不太麻烦，
+第三个词的条件概率$P(w_{1}|w_{1},w_{2})$已经非常难算了，因为它涉及到三个变量$w_{1},w_{2},w_{3}$，
+每个变量的可能性都是一种语言字典的大小。到了最后一个词$w_{n}$，条件概率$P(w_{n}|w_{1},w_{2},&hellip;,w_{n-1})$的可能性太多，
+无法估计，怎么办？</p>
+<p>俄罗斯有个叫马尔可夫（ANdrey Markov）的数学家，
+他给了个偷懒但颇为有效的方法，也就是每当遇到这种情况时，
+就假设任意一个词 $w_{i}$ 出现的概率只同它前面的词 $w_{i-1}$ 有关,
+于是问题就变得很简单了。这种假设在数学上称为马尔可夫假设。
+现在S出现的概率就变得简单了：</p>
+<p><code>$P(S)=P(w_{1}) \cdot P(w_{2}|w_{1}) \cdot P(w_{3}|w_{2})&hellip;P(w_{i}|w_{i-1})&hellip;P(w_{n}|w_{n-1}) \quad (3)$ </code></p>
+<p>接下来的问题就是如何估计条件概率$P(w_{i}|w_{i-1})$。</p>
+<p>根据它的定义：</p>
+<div float="left">
+<img src="http://wwxlpy.cn/blog_image/posta008/posta008_1.jpg" width="35%">
+</div>
+<p>而估计联合概率$P(w_{i-1} | w_{i})$和边缘概率$P(w_{i-1})$ 比较容易求得，
+只要数一数$w_{i-1}， w_{i}$这对词在语料库（Corpus）中前后相邻出现了多少次 #$(w_{i-1}， w_{i})$,
+以及$w_{i-1}$ 本身在同样的文本中出现了多少次 #$(w_{i-1})$，然后用这两个数分别除以语料库的大小 # ，
+即可得到这些词或者二元组的相对频度：</p>
+<img src="http://wwxlpy.cn/blog_image/posta008/posta008_2.jpg" width="30%">
+&nbsp
+<p>根据大数定理，只要统计量足够，相对频度就等于概率，即：</p>
+<p><img src="http://wwxlpy.cn/blog_image/posta008/posta008_3.jpg" width="30%" ></p>
+<p>而$P(w_{i}， w_{i-1})$ 就是这两个数的比值，再考虑到上面的两个概率有相同的分母，可以约掉，因此：</p>
+<img src="http://wwxlpy.cn/blog_image/posta008/posta008_4.jpg" width="30%">
+<p>由上面的公式，我们可以算出S的概率P(S)了，那么我们可以判断，当P(S)的值越大，S就越有意义。</p>
+<h2 id="n元模型n-gram-model">n元模型（N-Gram Model）</h2>
+<p>通过上面的例子，我们就能更好地理解N元模型的概念了。N元模型基于这样的一种假设：</p>
+<p>假定文本中的每个词$w_{i}$和前面N-1个词有关，而与更前面的词无关，这样当前词$w_{i}$
+的概率就只取决于前面N-1个词 $P( w_{(i-N+1)}， w_{(i-N+2)}，&hellip;,w_{(i-1)})$ 。</p>
+<p>因此：
+<code>$P(w_{i} | w_{1}，w_{2}&hellip;，w_{i-1})= P(w_{i} | w_{i-N+1}，w_{i-N+2}，&hellip;，w_{i-1}) \quad (4)$</code></p>
+<p>公式4的这种假设被称为N-1阶马尔可夫假设，对应的语言模型即为N元模型（N-Gram Model）。</p>
+<p>当N = 1时，模型称为一元模型（Unigram Model）</p>
+<p>当N = 2时，模型称为二元模型（Bigram Model）</p>
+<p>当N = 3时，模型称为三元模型（Trigram Model）</p>
+<p>第一节中的公式3对应的统计语言模型就是二元模型，
+而N=1的一元模型实际上是一个上下文无关的模型，
+也就是假定当前词出现的概率与前面的词无关。
+N越大，保留的信息就越多，但实际应用中最多的是N=3
+的三元模型，更高阶的模型很少使用。</p>
+<h2 id="拓展">拓展</h2>
+<p>上面所讲的内容其实只是统计语言模型的冰山一角，
+正如《数学之美》里面说到——“统计语言模型在形式上非常简单，任何人都很容易理解。
+但是里面的学问却可以很深，一个专家可以在这方面研究很多年”。
+确定语言模型的类型后，我们还要知道如何训练得到模型的参数，也就是上文提到的条件概率。
+在上文二元模型的例子中，计算参数似乎非常简单，只要知道两个词在语料中同现的次数和两个词分别在语料中单独出现的次数，
+计算一下比值即可。但是如果这当中两个词同现的次数为0，
+这是否意味着条件概率$P(w_{i}, w_{i-1})$为0？显然结论并不是这么绝对的。
+书中把这样的问题称为零概率问题，
+在实际应用中，统计语言模型的零概率问题是无法回避的。
+面对这样的问题，研究员首先提出了<code>平滑算法</code>来解决，
+再后来,<code>基于神经网络的语言模型</code>在这个问题上也有良好的表现。
+如果后面有空的话，就更一下这块的内容。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>[1]《数学之美》. 吴军</p>
+<h2 id="推荐阅读">推荐阅读</h2>
 <p>1、<a href="https://joyce-peng.github.io/2020/post_a007/">NLP入门系列(一) | 词表示</a></p>
 <p>2、<a href="https://joyce-peng.github.io/2020/post_a008/">NLP入门系列(二) | 统计语言模型</a></p>
 
@@ -235,7 +308,7 @@ code.has-jax {
              
             <p class="copyright-item">
                     <span>本文链接:</span>
-                    <a href=https://joyce-peng.github.io/2020/post_a006/>https://joyce-peng.github.io/2020/post_a006/</span>
+                    <a href=https://joyce-peng.github.io/2020/post_a008/>https://joyce-peng.github.io/2020/post_a008/</span>
             </p>
             
 			
@@ -265,10 +338,8 @@ code.has-jax {
 
     <div class="post-nav">
         
-        <a href="https://joyce-peng.github.io/2020/post_a005/" class="prev" rel="prev" title="读书笔记 | PCA主成分分析原理"><i class="iconfont icon-left"></i>&nbsp;读书笔记 | PCA主成分分析原理</a>
+        <a href="https://joyce-peng.github.io/2020/post_a007/" class="prev" rel="prev" title="NLP入门系列(一) | 词表示"><i class="iconfont icon-left"></i>&nbsp;NLP入门系列(一) | 词表示</a>
          
-        
-        <a href="https://joyce-peng.github.io/2020/post_a007/" class="next" rel="next" title="NLP入门系列(一) | 词表示">NLP入门系列(一) | 词表示&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -349,8 +420,9 @@ code.has-jax {
 
 
     
-    
-    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
     
   
 
