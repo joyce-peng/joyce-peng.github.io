@@ -22,10 +22,10 @@
   <title>
        
        
-           NLP入门系列(三) | CBOW 模型、Skip-gram 模型 | Joyce`s Blog
+           NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型 | Joyce`s Blog
        
   </title>
-  <meta name="title" content="NLP入门系列(三) | CBOW 模型、Skip-gram 模型 | Joyce`s Blog">
+  <meta name="title" content="NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型 | Joyce`s Blog">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "https:\/\/joyce-peng.github.io"
     },
     "articleSection" : "posts",
-    "name" : "NLP入门系列(三) | CBOW 模型、Skip-gram 模型",
-    "headline" : "NLP入门系列(三) | CBOW 模型、Skip-gram 模型",
-    "description" : "CBOW模型",
+    "name" : "NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型",
+    "headline" : "NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型",
+    "description" : "CBOW模型 CBOW的one-word context版本 One-word context指的是模型只输入一个上下文单词（context word）来预测一个目",
     "inLanguage" : "zh-cn",
     "author" : "Joyce",
     "creator" : "Joyce",
@@ -57,7 +57,7 @@
     "datePublished": "2020-05-13 23:41:37 \x2b0800 CST",
     "dateModified" : "2020-05-13 23:41:37 \x2b0800 CST",
     "url" : "https:\/\/joyce-peng.github.io\/2020\/post_a009\/",
-    "wordCount" : "6",
+    "wordCount" : "2950",
     "keywords" : [  "Joyce`s Blog"]
 }
 </script>
@@ -168,7 +168,7 @@ code.has-jax {
     <script src="/js/social-share.min.js"></script>
     <script src="/js/qrcode.js"></script>
 	
-        <h1 class="post-title" itemprop="name headline">NLP入门系列(三) | CBOW 模型、Skip-gram 模型</h1>
+        <h1 class="post-title" itemprop="name headline">NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://joyce-peng.github.io" rel="author">Joyce</a> with ♥ 
                 <span class="post-time">
@@ -176,7 +176,7 @@ code.has-jax {
                 </span>
                 in
                 
-				<span >, 共 <span class="keyword_Highlight">6</span> 词</span>
+				<span >, 共 <span class="keyword_Highlight">2950</span> 词</span>
 				<span >, 总阅读量 <span id="busuanzi_value_page_pv" class="keyword_Highlight"></span> 次</span>
 				
         </div>
@@ -185,6 +185,8 @@ code.has-jax {
 	<div class="post-content">
         
 
+        
+            
         
 
         
@@ -199,6 +201,143 @@ code.has-jax {
           
 
           <h2 id="cbow模型">CBOW模型</h2>
+<h3 id="cbow的one-word-context版本">CBOW的one-word context版本</h3>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_1.jpg" width="70%">
+<p>One-word context指的是模型只输入一个上下文单词（context word）来预测一个目标单词（target word）。
+假设词表一共有V个词，这V个词有其先后顺序，
+取其中一个词 $w_{I}$ 进行one-hot 编码 (就是用一个只含一个1，
+其他都是0的向量来唯一表示词语) 后输入模型来预测下个词y。
+整体结构如上图，输入层与隐层，隐层与输出层之间都是全连接，
+隐层是线性的 (即直接把求和的值输入下一层，没有激活函数) 。</p>
+<h4 id="词的输入向量表示">词的输入向量表示</h4>
+<p>从输入层到隐藏层的权重值可以用一个 V×N 维的矩阵 W 来表示，即：</p>
+<p><img src="http://wwxlpy.cn/blog_image/posta009/posta009_2.jpg" alt="posta009_2.jpg"></p>
+<p>假设模型输入的是$w_{I}$(这里的$w_{I}$用 one-hot表示，即$x_{k} =1$ ，其他位置的 x 为0)，
+则 $v_{ωI}$ 完全是从 W 矩阵第 k 行复制过来的，可以唯一的表示词$w_{I}$。
+不过 $v_{ωI}$ 只是可以表示词$w_{I}$的向量中的一种，为了区分，
+我们把 $v_{ωI}$ 叫做词$w_{I}$的输入向量。</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_3.jpg" width="60%">
+<h4 id="词的输出向量表示">词的输出向量表示</h4>
+<p>除了输入层到隐藏层的过程可以产生词 $w_{I}$ 的向量表示，隐藏层到输出层也可以。
+从隐藏层到输出层的权重值可以用一个 N×V 维的矩阵$ W’ $ 来表示，即：</p>
+<p><img src="http://wwxlpy.cn/blog_image/posta009/posta009_4.jpg" alt="posta009_4.jpg"></p>
+<p>通过这些权重，我们可以为词表中的每一个单词都计算出一个得分$u_{j}$ 。
+其中， $ v_{ωj}’ $  即为矩阵 $ W’ $ 的第 j 列向量，同时也是输出向量，
+它跟  $v_{ωI}$  一样都是N维的向量。</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_5.jpg" width="52%">
+<h4 id="单词的后验分布">单词的后验分布</h4>
+<p>经过以上讨论之后，我们可以使用一种对数-线性分类模型softmax函数来计算单词的后验分布。</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_6.jpg" width="60%">
+<p>其中，$y_{j}$ 表示输出层第 j 个神经单元的输出值。将（1）式和（2）式代入（3）式我们可以得到：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_7.jpg" width="65%">
+<h4 id="参数列表">参数列表</h4>
+<p>后面涉及的参数比较多，先列个表方便查看。</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_10.jpg" width="55%">
+<h4 id="隐藏层到输出层的权重更新v_ωj-的更新">隐藏层到输出层的权重更新（$v_{ωj}’$ 的更新）</h4>
+<p>更新权重用到的是反向传播算法，训练的目标是求公式(4)的最大值。
+公式(4)代表的就是给定上下文信息（即一个单词$w_{I}$）及其权重矩阵的情况下，
+预测其实际输出单词（$w_{O}$）的条件概率 :</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_8.jpg" width="68%">
+<p>其中，$E = -log P(w_{O} | w_{O})$ 为该模型的损失函数（即我们要找到E的最小值），
+$u_{j}*$由公式(2)得出，$j*$ 为应该输出单词</p>
+<p>（$w_{O}$）的索引下标。
+现在开始推导从隐藏层到输出层的权重矩阵在模型训练过程中的参数更新公式。</p>
+<p>首先我们对损失函数E求关于得分$u_{j}$的偏导数，得结果为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_9.jpg" width="55%">
+<p>其中，$tj$为期望输出，$tj = 1（j = j*）$，
+即当且仅当输出层得第 j 个神经单元为真实的输出单词时，
+$tj$的取值为1。
+接下来根据链式法求出损失函数E关于矩阵$ W’ $元素 $w_{ij}’$ 的偏导数为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_11.jpg" width="60%">
+<p>因此，采用随机梯度下降算法（SGD）,我们最终得到了隐藏层到输出层（hidden→output）权重的更新公式如下：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_12.jpg" width="65%">
+<p>其中， $η&gt;0$ 为参数更新的学习速率，$ej = yj -tj， hi$ 为隐藏层的第i个神经单元。</p>
+<h4 id="输入层到隐藏层的权重更新v_ω_i-的更新">输入层到隐藏层的权重更新（$v_{ω_{I}}’$ 的更新）</h4>
+<p>在介绍完hidden→output的权重矩阵更新公式之后，
+接着就是input→hidden的权重矩阵W的更新过程。
+我们继续对损失函数E求关于隐藏层hi的偏导数，得：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_13.jpg" width="60%">
+<p>由公式12可知 $EH_{i}$ 是一个 N 维向量，
+它的每个元素代表的是词汇表中每个单词的预测误差 e j与 $w_{ij}’$ 在 j=1 到 V 上的乘积之和。
+接下来，我们需要求出损失函数 E 关于权重矩阵 W 的偏导数。
+首先，分解公式 1，我们知道隐藏层激活单元的输出 hi 是输入层 x 与权重的线性组合，即</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_14.jpg" width="52%">
+<p>因此对于权重矩阵W的每一个元素，我们求关于 E 的偏导数，得到：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_15.jpg" width="55%">
+<p>因此我们利用张量乘积的方式，便可得到：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_16.jpg" width="55%">
+<p>我们再次得到了一个V×N的矩阵。由于x向量只有一个非0元素，因此
+$ \frac{\partial E}{\partial W} $
+只有一行是 N 维非0向量 $EH^T$，
+因此矩阵 W 的更新公式为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_17.jpg" width="55%">
+<p>其中 $v_{ωI}$ 是矩阵 W 的其中一行，是唯一的上下文单词（$ω_{I}$）的输入向量，
+也是矩阵 W 唯一的导数非0的行向量。除了 $v_{ωI}$ 以外，
+矩阵 W 的其他行向量在参数更新迭代过程中都会保持不变（因为其导数为0）。</p>
+<h3 id="cbow的multi-word-context版本">CBOW的multi-word context版本</h3>
+<p><img src="http://wwxlpy.cn/blog_image/posta009/posta009_18.jpg" alt="avatar"></p>
+<p>Multi-word context指的是利用多个上下文单词来推测目标词。其结构如上图。</p>
+<p>它与one-word context版本的区别是，它输入的是多个 context word 的平均：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_19.jpg" width="55%">
+<p>C是上下文单词的个数，$w_{1},&hellip;, w_{C}$ 是上下文中的单词，
+$v_{w}$ 是词的输入向量。</p>
+<p>它的损失函数是：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_20.jpg" width="60%">
+<p>它 hidden→output 的权重更新公式和one-word context版本的一样：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_21.jpg" width="68%">
+<p>它 input→hidden 的权重更新公式为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_22.jpg" width="68%">
+<p>这里 $v_{w_{I,c}}$ 是上下文中第 c 个单词的输入向量，η 为正学习速率，
+$ EH = \frac{\partial E}{\partial hi} $ 由公式(12)给出。</p>
+<h2 id="skip-gram模型">Skip-Gram模型</h2>
+<p><img src="http://wwxlpy.cn/blog_image/posta009/posta009_23.jpg" alt="avatar"></p>
+<p>Skip-Gram模型（后简称SG模型）与CBOW模型正相反，
+它是以目标词（target word）作为输入，上下文单词（context word）作为输出的。
+我们仍使用$v_{ωI}$ 来表示输入层上唯一的那个单词的输入向量，
+因此我们对于隐藏层的输入值h的计算公式与第一节公式(1)相同，表示如下：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_24.jpg" width="50%">
+<p>在输出层，与CBOW模型的输出为单个多项式分布不同的是，
+SG模型在输出层输出了C个多项式分布。
+每个输出都使用相同的hidden-&gt;output矩阵计算：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_25.jpg" width="60%">
+<p>$w_{c,j}$ 是输出层第 c 个panel的第 j 个单词，$w_{O,c}$ 是实际输出上下文单词的第 c 个单词，
+$w_{I}$是唯一的输入单词，$y_{c,j}$ 为输出层的第 c 个panel上的第j个神经单元的概率输出值；
+$μ_{c,j}$ 表示的是输出层第 c 个panel的第 j 个神经元的输入值，
+由于输出层的所有panels共享同一权重矩阵 $W'$ ,因此：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_26.jpg" width="60%">
+<p>SG模型参数更新公式的推导过程与one-word-context 模型的推导过程大体上一样。这里我们将损失函数变为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_27.jpg" width="60%">
+<p>其中 $j_{c}^*$ 为第c个输出层输出的上下文单词在词汇表中的真实索引。
+在得到损失函数E之后，我们对输出层的每一个panel上的所有激活单元的输入值 $μ_{c,j}$ ，
+均求其关于E的偏导数，得：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_28.jpg" width="55%">
+<p>其中 $e_{c,j}$ 为输出层神经元的预测误差,与公式(8)相似。为了简化符号，
+我们定义一个V维的向量$EI = {EI_{1},&hellip;., EI_{v}}$
+作为所有上下文单词的预测误差之和，
+$EI_{j}$ 用公式定义如下：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_29.jpg" width="50%">
+<p>接下来，我们计算hidden-&gt;output权重矩阵 $W′$ 关于 E 的偏导数为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_30.jpg" width="60%">
+<p>所以 $v_{wj}’$ 的更新公式为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_31.jpg" width="66%">
+<p>上述参数更新公式的直观概念理解与上文公式（11）无二，
+除了一点就是：输出层的预测误差的计算是基于多个上下文单词context words,
+而不是单个目标单词 target word;需注意的是对于每一个训练样本，
+我们都要利用该参数更新公式来更新hidden→output权重矩阵 $W′$ 的每个元素。</p>
+<p>同样，对于对于input→hidden权重矩阵 $W$ 的参数更新公式的推导过程，
+除了考虑要将预测误差ej
+替换为$EI_{j}$外，其他也与公式（12）到公式（16）类似。
+所以 $v_{wI}$ 的更新公式为：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_32.jpg" width="55%">
+<p>其中，E 是一个 N 维向量，组成该向量的每一个元素可以用如下公式表示：</p>
+<img src="http://wwxlpy.cn/blog_image/posta009/posta009_33.jpg" width="55%">
+<h2 id="参考资料">参考资料</h2>
+<p>[1]《word2vec Parameter Learning Explained》. Xin Rong</p>
+<p>[2]https://blog.csdn.net/lanyu_01/article/details/80097350</p>
+<h2 id="推荐阅读">推荐阅读</h2>
+<p>1、<a href="https://joyce-peng.github.io/2020/post_a007/">NLP入门系列(一) | 词表示</a></p>
+<p>2、<a href="https://joyce-peng.github.io/2020/post_a008/">NLP入门系列(二) | 统计语言模型</a></p>
+<p>2、<a href="https://joyce-peng.github.io/2020/post_a009/">NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型</a></p>
 
 
 	</div>
@@ -327,8 +466,9 @@ code.has-jax {
 
 
     
-    
-    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
     
   
 

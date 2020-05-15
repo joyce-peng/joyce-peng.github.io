@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>NLP入门系列(三) | CBOW 模型、Skip-gram 模型</title>
+      <title>NLP入门系列(三) | CBOW 模型、 Skip-Gram 模型</title>
       <link>https://joyce-peng.github.io/2020/post_a009/</link>
       <pubDate>Wed, 13 May 2020 23:41:37 +0800</pubDate>
       
       <guid>https://joyce-peng.github.io/2020/post_a009/</guid>
-      <description>CBOW模型</description>
+      <description>CBOW模型 CBOW的one-word context版本 One-word context指的是模型只输入一个上下文单词（context word）来预测一个目</description>
     </item>
     
     <item>
